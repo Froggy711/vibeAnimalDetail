@@ -184,6 +184,29 @@ body {
     font-weight: 600;
 }
 
+/* Recommended Section */
+.recommended-section {
+    margin-bottom: 80px;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(112, 0, 255, 0.05), transparent);
+    border-radius: 30px;
+    border: var(--glass-border);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-title i {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
 /* Grid */
 .animals-grid {
     display: grid;
