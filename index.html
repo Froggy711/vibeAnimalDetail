@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Animals | สารานุกรมสัตว์โลก</title>
+    <meta name="description" content="Discover the amazing world of animals. Explore land, water, and air creatures.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-glob"></div>
+    <div class="background-glob-2"></div>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-paw"></i> Animex
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">หน้าหลัก</a>
+                <a href="#explore">สำรวจ</a>
+                <a href="about.html">เกี่ยวกับ</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1>สำรวจโลกแห่ง<br><span class="gradient-text">สัตว์มหัศจรรย์</span></h1>
+            <p>เรียนรู้เกี่ยวกับถิ่นที่อยู่ อาหาร และลักษณะพิเศษของสัตว์นานาชนิดจากทั่วทุกมุมโลก</p>
+            <a href="#explore" class="btn-primary">เริ่มต้นสำรวจ <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </header>
+
+    <main id="explore" class="container">
+        <section class="filters">
+            <h2>ประเภทสัตว์ (Categories)</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                <button class="filter-btn" data-filter="land"><i class="fa-solid fa-earth-americas"></i>
+                    สัตว์บก</button>
+                <button class="filter-btn" data-filter="water"><i class="fa-solid fa-water"></i> สัตว์น้ำ</button>
+                <button class="filter-btn" data-filter="poultry"><i class="fa-solid fa-dove"></i> สัตว์ปีก</button>
+            </div>
+        </section>
+
+        <section class="animals-grid" id="animalsGrid">
+            <!-- Animal cards will be injected here by JS -->
+        </section>
+
+
+    </main>
+
+    <!-- Modal -->
+    <div id="animalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Animex. Created for Education.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
