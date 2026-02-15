@@ -355,6 +355,49 @@ body {
     transform: scale(1.05);
 }
 
+.card-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: var(--transition);
+}
+
+.animal-card:hover .card-actions {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.action-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    background: var(--primary);
+    transform: scale(1.1);
+}
+
+.action-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
 .card-info {
     padding: 24px;
 }
@@ -602,4 +645,177 @@ body {
 
 .mission-tags span i {
     color: var(--secondary);
+}
+
+/* Comparison Dock */
+.compare-dock {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 26, 26, 0.82);
+    backdrop-filter: blur(20px);
+    border: var(--glass-border);
+    padding: 15px 30px;
+    border-radius: 40px 40px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    z-index: 900;
+    transition: bottom 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.compare-dock.show {
+    bottom: 0;
+}
+
+.compare-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.compare-info span {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.compare-slots {
+    display: flex;
+    gap: 15px;
+}
+
+.compare-slot {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.compare-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-slot {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.btn-text:hover {
+    color: var(--accent);
+}
+
+/* Comparison Modal */
+.compare-modal-content {
+    max-width: 1000px !important;
+    padding: 40px;
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.compare-grid::after {
+    content: 'VS';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--gradient-title);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    opacity: 0.3;
+}
+
+.compare-item {
+    text-align: center;
+}
+
+.compare-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.compare-item h2 {
+    font-family: var(--font-heading);
+    margin-bottom: 20px;
+}
+
+.compare-stats {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.stat-box {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.stat-box:last-child {
+    border-bottom: none;
+}
+
+.stat-box .label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.stat-box .value {
+    color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+    .compare-dock {
+        width: 100%;
+        border-radius: 0;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .compare-grid::after {
+        display: none;
+    }
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Comparison - Animex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .compare-page-container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
+        .compare-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .compare-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient-title);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        #compareContent {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-hippo"></i>
+            <span>Animex</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="index.html#explore">สำรวจ</a>
+            <a href="about.html">เกี่ยวกับ</a>
+        </div>
+    </nav>
+
+    <div class="compare-page-container">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> กลับไปหน้าหลัก</a>
+
+        <header class="compare-header">
+            <h1>เปรียบเทียบสัตว์</h1>
+            <p>เทียบข้อมูลความแตกต่างระหว่างสัตว์ที่คุณเลือก</p>
+        </header>
+
+        <div id="compareContent" class="compare-grid">
+            <!-- Data injected by compare.js -->
+            <div style="grid-column: span 2; text-align: center; padding: 100px;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 3rem; color: var(--primary);"></i>
+                <p style="margin-top: 20px;">กำลังโหลดข้อมูล...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Animex. Created for Education.</p>
+    </footer>
+
+    <script src="about-script.js"></script> <!-- Re-using theme logic -->
+    <script src="compare.js"></script>
+</body>
+
+</html>

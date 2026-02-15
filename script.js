@@ -224,7 +224,8 @@ const funFactEl = document.getElementById('funFact');
 const state = {
     category: 'all',
     search: '',
-    diet: 'all'
+    diet: 'all',
+    compareList: []
 };
 
 // Initial Render
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFunFact();
     setupEventListeners();
     initScrollAnimations();
+    setupComparisonListeners();
 });
 
 // Theme Logic
@@ -321,12 +323,23 @@ function createAnimalCard(animal, delay) {
         <div class="card-image-wrapper">
             <img src="${animal.image}" alt="${animal.name}" class="card-image">
         </div>
+        <div class="card-actions">
+            <button class="action-btn compare-btn ${state.compareList.some(a => a.id === animal.id) ? 'active' : ''}" title="เปรียบเทียบ"><i class="fa-solid fa-right-left"></i></button>
+        </div>
         <div class="card-info">
             <span class="card-badge ${typeInfo.className}">${typeInfo.label}</span>
             <h3>${animal.name}</h3>
             <p><i class="fa-solid fa-location-dot"></i> ${animal.habitat}</p>
         </div>
     `;
+
+    // Internal actions
+    const compareBtn = card.querySelector('.compare-btn');
+
+    compareBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleCompare(animal);
+    });
 
     card.addEventListener('click', () => openModal(animal));
 
@@ -416,6 +429,111 @@ function openModal(animal) {
             </div>
         </div>
     `;
+
+    modal.classList.add('show');
+}
+
+// Comparison Logic
+function toggleCompare(animal) {
+    const index = state.compareList.findIndex(a => a.id === animal.id);
+    if (index > -1) {
+        state.compareList.splice(index, 1);
+    } else {
+        if (state.compareList.length >= 2) {
+            alert('เปรียบเทียบได้สูงสุด 2 ชนิดครับ');
+            return;
+        }
+        state.compareList.push(animal);
+    }
+
+    updateComparisonUI();
+}
+
+function updateComparisonUI() {
+    const dock = document.getElementById('compareDock');
+    const count = document.getElementById('compareCount');
+    const slots = document.getElementById('compareSlots');
+    const startBtn = document.getElementById('startCompareBtn');
+
+    count.textContent = state.compareList.length;
+    slots.innerHTML = '';
+
+    state.compareList.forEach(animal => {
+        const slot = document.createElement('div');
+        slot.className = 'compare-slot';
+        slot.innerHTML = `
+            <img src="${animal.image}" alt="${animal.name}">
+            <button class="remove-slot" onclick="event.stopPropagation(); removeCompare(${animal.id})">&times;</button>
+        `;
+        slots.appendChild(slot);
+    });
+
+    // Sync to localStorage for the new tab
+    localStorage.setItem('compareList', JSON.stringify(state.compareList));
+
+    startBtn.disabled = state.compareList.length < 2;
+
+    if (state.compareList.length > 0) {
+        dock.classList.add('show');
+    } else {
+        dock.classList.remove('show');
+    }
+
+    // Update active state on all visible cards
+    document.querySelectorAll('.animal-card').forEach(card => {
+        // This is a bit expensive but keeps it in sync
+        // A better way would be using animal id in dataset
+    });
+
+    // For simplicity, we'll re-render the grid if needed or just toggle classes manually
+    // But re-rendering might lose scroll positions. Let's try class toggling
+    applyCompareClasses();
+}
+
+function removeCompare(id) {
+    state.compareList = state.compareList.filter(a => a.id !== id);
+    updateComparisonUI();
+}
+
+// Make globally accessible for onclick
+window.removeCompare = removeCompare;
+
+function applyCompareClasses() {
+    // This is optional if we don't want to re-render everything
+}
+
+function setupComparisonListeners() {
+    const startBtn = document.getElementById('startCompareBtn');
+    const clearBtn = document.getElementById('clearCompareBtn');
+
+    startBtn.addEventListener('click', () => {
+        window.open('compare.html', '_blank');
+    });
+
+    clearBtn.addEventListener('click', () => {
+        state.compareList = [];
+        updateComparisonUI();
+    });
+}
+
+function openComparison() {
+    if (state.compareList.length < 2) return;
+
+    const modal = document.getElementById('compareModal');
+    const content = document.getElementById('compareContent');
+
+    content.innerHTML = state.compareList.map(animal => `
+        <div class="compare-item">
+            <img src="${animal.image}" alt="${animal.name}">
+            <h2>${animal.name}</h2>
+            <div class="compare-stats">
+                <div class="stat-box"><span class="label">ประเภท</span><span class="value">${getTypeInfo(animal.type).label}</span></div>
+                <div class="stat-box"><span class="label">ถิ่นที่อยู่</span><span class="value">${animal.habitat}</span></div>
+                <div class="stat-box"><span class="label">อาหาร</span><span class="value">${animal.diet}</span></div>
+            </div>
+            <p style="margin-top: 20px; color: var(--text-muted); font-size: 0.9rem;">${animal.description}</p>
+        </div>
+    `).join('');
 
     modal.classList.add('show');
 }
