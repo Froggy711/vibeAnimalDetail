@@ -7,7 +7,7 @@ const animals = [
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "สิงโตเป็นสัตว์ตระกูลแมวที่มีขนาดใหญ่ที่สุดในแอฟริกา มีฉายาว่า 'เจ้าป่า' ตัวผู้มีแผงคอที่สง่างาม สิงโตมักอยู่รวมกันเป็นฝูง",
-        image: "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/สิงโต (Lion).jpg"
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const animals = [
         habitat: "ป่าและพื้นที่ใกล้แหล่งน้ำ (Forests & Lakes)",
         diet: "สัตว์กินเนื้อ/ปลา (Carnivore/Piscivore)",
         description: "นกอินทรีหัวขาวเป็นสัญลักษณ์ของความอิสระและความแข็งแกร่ง มีสายตาที่เฉียบคมและกรงเล็บที่ทรงพลัง",
-        image: "https://images.unsplash.com/photo-1611080277334-0d922974b62f?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/นกอินทรีหัวขาว (Bald Eagle).jpg"
     },
     {
         id: 4,
@@ -34,7 +34,7 @@ const animals = [
         habitat: "ป่าและทุ่งหญ้า (Forests & Savannahs)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ช้างแอฟริกาเป็นสัตว์บกที่มีขนาดใหญ่ที่สุดในโลก มีงวงที่ยาวและใบหูขนาดใหญ่เพื่อระบายความร้อน",
-        image: "https://images.unsplash.com/photo-1557050543-4d5f4e64185f?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/ช้างแอฟริกา (African Elephant).jpg"
     },
     {
         id: 5,
@@ -52,7 +52,7 @@ const animals = [
         habitat: "ป่าโปร่ง (Open Forests)",
         diet: "สัตว์กินพืชและแมลง (Omnivore)",
         description: "นกยูงตัวผู้มีขนหางที่สวยงามและสามารถรำแพนเพื่อเกี้ยวพาราสีตัวเมีย เป็นสัญลักษณ์ของความงดงาม",
-        image: "https://images.unsplash.com/photo-1502086307993-490352be572e?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/นกยูง (Peacock).jpg"
     },
     // New Land Animals
     {
@@ -62,7 +62,7 @@ const animals = [
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ยีราฟเป็นสัตว์บกที่สูงที่สุดในโลก มีคอที่ยาวมากเพื่อช่วยในการกินใบไม้จากยอดไม้สูง",
-        image: "https://images.unsplash.com/photo-1547721064-3620263321f5?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/ยีราฟ (Giraffe).jpg"
     },
     {
         id: 8,
@@ -71,7 +71,7 @@ const animals = [
         habitat: "ป่าทึบและทุ่งหญ้า (Forests & Grasslands)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "เสือโคร่งเป็นสัตว์ตระกูลแมวที่มีขนาดใหญ่ที่สุด มีลายพาดกลอนที่เป็นเอกลักษณ์เฉพาะตัวในแต่ละตัว",
-        image: "https://images.unsplash.com/photo-1508249038222-3837813a3780?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/เสือโคร่ง (Tiger).jpg"
     },
     {
         id: 9,
@@ -80,7 +80,7 @@ const animals = [
         habitat: "ทุ่งหญ้าในออสเตรเลีย (Australian Outback)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "จิงโจ้เป็นสัตว์ที่มีกระเป๋าหน้าท้องสำหรับเลี้ยงลูก และใช้การกระโดดเป็นวิธีการเคลื่อนที่หลัก",
-        image: "https://images.unsplash.com/photo-1525010640431-7589d7010491?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/จิงโจ้ (Kangaroo).jpg"
     },
     {
         id: 10,
@@ -89,7 +89,7 @@ const animals = [
         habitat: "ป่าสนบนภูเขาสูง (High-altitude Forests)",
         diet: "สัตว์กินพืช/ไผ่ (Herbivore/Bamboo)",
         description: "แพนด้าแดงมีขนหนานุ่มสีน้ำตาลแดงและหางเป็นพวง ชอบอาศัยอยู่บนต้นไม้เป็นส่วนใหญ่",
-        image: "https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/แพนด้าแดง (Red Panda).jpg"
     },
     {
         id: 11,
@@ -98,7 +98,7 @@ const animals = [
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ม้าลายเป็นสัตว์ที่มีลายสีขาวดำพาดขวางทั้งตัว ซึ่งช่วยในการอำพรางตัวจากนักล่า",
-        image: "https://images.unsplash.com/photo-1501705388883-4ed8a543392c?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์บก/ม้าลาย (Zebra).jpg"
     },
     // New Water Animals
     {
@@ -108,7 +108,7 @@ const animals = [
         habitat: "มหาสมุทรทั่วโลก (Oceans)",
         diet: "สัตว์กินเนื้อ/แพลงก์ตอน (Carnivore/Krill)",
         description: "วาฬสีน้ำเงินเป็นสัตว์ที่มีขนาดใหญ่ที่สุดที่เคยอาศัยอยู่บนโลกใบนี้ หัวใจของมันมีขนาดเท่ากับรถยนต์หนึ่งคัน",
-        image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์น้ำ/วาฬสีน้ำเงิน (Blue Whale).jpg"
     },
     {
         id: 13,
@@ -117,7 +117,7 @@ const animals = [
         habitat: "แนวปะการังและพื้นหิน (Reefs & Rocks)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "หมึกยักษ์เป็นสัตว์ไม่มีกระดูกสันหลังที่ฉลาดมาก สามารถเปลี่ยนสีและสัมผัสผิวหนังเพื่ออำพรางตัวได้",
-        image: "https://images.unsplash.com/photo-1545671913-b89a0417658c?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์น้ำ/หมึกยักษ์ (Octopus).jpg"
     },
     {
         id: 14,
@@ -126,7 +126,7 @@ const animals = [
         habitat: "ทะเลเขตร้อนและอบอุ่น (Tropical Seas)",
         diet: "สัตว์กินพืชและสัตว์ (Omnivore)",
         description: "เต่าทะเลใช้ชีวิตส่วนใหญ่อยู่ในน้ำ และจะขึ้นมาบนบกเพียงเพื่อวางไข่บนชายหาดเท่านั้น",
-        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์น้ำ/เต่าทะเล (Sea Turtle).jpg"
     },
     {
         id: 15,
@@ -135,7 +135,7 @@ const animals = [
         habitat: "พื้นทะเลที่มีสาหร่ายและหญ้าทะเล (Seagrass beds)",
         diet: "สัตว์กินเนื้อขนาดเล็ก (Carnivore)",
         description: "ม้าน้ำเป็นปลาที่มีหัวคล้ายม้า และเป็นหนึ่งในสัตว์ไม่กี่ชนิดที่ตัวผู้เป็นฝ่ายอุ้มท้องและคลอดลูก",
-        image: "https://images.unsplash.com/photo-1534073133331-c4b62a557083?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์น้ำ/ม้าน้ำ (Seahorse).jpg"
     },
     {
         id: 16,
@@ -144,7 +144,7 @@ const animals = [
         habitat: "มหาสมุทร (Oceans)",
         diet: "สัตว์กินเนื้อขนาดเล็ก (Carnivore)",
         description: "แมงกะพรุนเป็นสัตว์โปร่งแสงที่ไม่มีสมอง หัวใจ หรือกระดูก มีเข็มพิษอยู่ที่หนวดเพื่อป้องกันตัว",
-        image: "https://images.unsplash.com/photo-1544923246-77307dd654ca?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์น้ำ/แมงกะพรุน (Jellyfish).jpg"
     },
     // New Poultry Animals
     {
@@ -154,7 +154,7 @@ const animals = [
         habitat: "ป่าไม้และพื้นที่เกษตร (Forests & Farmlands)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "นกเค้าแมวเป็นนักล่าในเวลากลางคืนที่มีสายตาดีเยี่ยมและสามารถบินได้เงียบกริบเพื่อไม่ให้เหยื่อรู้ตัว",
-        image: "https://images.unsplash.com/photo-1543549710-230ee51812f3?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/นกเค้าแมว (Owl).jpg"
     },
     {
         id: 18,
@@ -163,7 +163,7 @@ const animals = [
         habitat: "ป่าฝนเขตร้อน (Tropical Rainforests)",
         diet: "สัตว์กินพืช/ผลไม้ (Herbivore/Fruit)",
         description: "นกแก้วมาคอว์ขึ้นชื่อเรื่องขนที่มีสีสันสดใสและความฉลาด สามารถเลียนเสียงพูดของมนุษย์ได้",
-        image: "https://images.unsplash.com/photo-1552728089-57bdde30ebd3?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/นกแก้วมาคอว์ (Macaw).jpg"
     },
     {
         id: 19,
@@ -172,7 +172,7 @@ const animals = [
         habitat: "ทะเลสาบน้ำเค็มและชายฝั่ง (Saline Lakes & Coasts)",
         diet: "สัตว์กินเนื้อ/แพลงก์ตอน (Carnivore/Plankton)",
         description: "นกฟลามิงโกมีขนสีชมพูที่เกิดจากการกินกุ้งและสาหร่ายที่มีสารคาร์โรทีนอยด์",
-        image: "https://images.unsplash.com/photo-1551065842-70b1ec189c44?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/นกฟลามิงโก (Flamingo).jpg"
     },
     {
         id: 20,
@@ -181,7 +181,7 @@ const animals = [
         habitat: "แม่น้ำและทะเลสาบ (Rivers & Lakes)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "หงส์ขาวเป็นสัญลักษณ์ของความสง่างามและความซื่อสัตย์ มักอาศัยอยู่ในแหล่งน้ำจืดที่เงียบสงบ",
-        image: "https://images.unsplash.com/photo-1514820402329-de527fdd2e6d?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/หงส์ขาว (Mute Swan).jpg"
     },
     {
         id: 21,
@@ -190,8 +190,22 @@ const animals = [
         habitat: "ป่าฝนเขตร้อน (Tropical Rainforests)",
         diet: "สัตว์กินพืช/ผลไม้ (Herbivore/Fruit)",
         description: "นกทูแคนมีจะงอยปากขนาดใหญ่ที่มีสีสันสวยงาม ซึ่งช่วยในการเอื้อมเก็บผลไม้ที่อยู่ห่างไกล",
-        image: "https://images.unsplash.com/photo-1494220556113-f8234399b362?auto=format&fit=crop&q=80&w=1000"
+        image: "picAnimal/สัตว์ปีก/นกทูแคน (Toucan).jpg"
     }
+];
+
+// Fun Facts Data
+const funFacts = [
+    "หัวใจของวาฬสีน้ำเงินมีขนาดใหญ่เท่ากับรถยนต์หนึ่งคัน!",
+    "สิงโตตัวพู้นอนได้นานถึง 20 ชั่วโมงต่อวัน",
+    "หมึกยักษ์มีหัวใจ 3 ดวง และเลือดของมันเป็นสีน้ำเงิน",
+    "จิงโจ้ไม่สามารถกระโดดถอยหลังได้",
+    "หงส์มีกระดูกคอมากกว่ายีราฟ",
+    "เสือโคร่งมีลายบนผิวหนังไม่ใช่แค่บนขน และลายแต่ละตัวจะไม่ซ้ำกันเลย",
+    "แพนด้ากินไผ่ได้วันละ 12-38 กิโลกรัม",
+    "ม้าน้ำเป็นปลาชนิดเดียวที่มีคอ และตัวผู้เป็นตัวที่คลอดลูก",
+    "นกฮูกสามารถหมุนหัวได้ถึง 270 องศา",
+    "ช้างแอฟริกาเป็นสัตว์บกที่มีขนาดใหญ่ที่สุดในปัจจุบัน"
 ];
 
 // DOM Elements
@@ -201,21 +215,88 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const modal = document.getElementById('animalModal');
 const modalBody = document.getElementById('modalBody');
 const closeModal = document.querySelector('.close-modal');
+const themeToggle = document.getElementById('themeToggle');
+const searchInput = document.getElementById('searchInput');
+const dietFilter = document.getElementById('dietFilter');
+const funFactEl = document.getElementById('funFact');
+
+// State Manager
+const state = {
+    category: 'all',
+    search: '',
+    diet: 'all'
+};
 
 // Initial Render
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     renderRecommended();
     renderAnimals(animals);
+    renderFunFact();
     setupEventListeners();
+    initScrollAnimations();
 });
+
+// Theme Logic
+function initTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(themeToggle, savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(themeToggle, newTheme);
+    });
+}
+
+function updateThemeIcon(btn, theme) {
+    const icon = btn.querySelector('i');
+    if (icon) {
+        icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+}
+
+// Fun Fact Logic
+function renderFunFact() {
+    if (!funFactEl) return;
+    const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+    funFactEl.innerHTML = `<span><strong>รู้หรือไม่:</strong> ${randomFact}</span>`;
+}
+
+function applyFilters() {
+    const filtered = animals.filter(animal => {
+        const matchesCategory = state.category === 'all' || animal.type === state.category;
+        const matchesSearch = animal.name.toLowerCase().includes(state.search.toLowerCase());
+
+        // Clean diet string for matching
+        const dietSlug = getDietSlug(animal.diet);
+        const matchesDiet = state.diet === 'all' || dietSlug === state.diet;
+
+        return matchesCategory && matchesSearch && matchesDiet;
+    });
+
+    renderAnimals(filtered);
+}
+
+function getDietSlug(dietStr) {
+    if (dietStr.includes('สัตว์กินเนื้อ')) return 'carnivore';
+    if (dietStr.includes('สัตว์กินพืช')) return 'herbivore';
+    return 'omnivore'; // covers 'สัตว์กินพืชและแมลง' or others
+}
 
 // Render Recommended Function
 function renderRecommended() {
     if (!recommendedGrid) return;
 
-    // Pick 4 random unique animals
+    // Pick 6 random unique animals
     const shuffled = [...animals].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 4);
+    const selected = shuffled.slice(0, 6);
 
     recommendedGrid.innerHTML = '';
 
@@ -229,8 +310,10 @@ function renderRecommended() {
 function createAnimalCard(animal, delay) {
     const card = document.createElement('article');
     card.className = 'animal-card';
-    card.style.animation = `fadeInUp 0.6s ease forwards ${delay}s`;
-    card.style.opacity = '0';
+
+    // Instead of inline animation, we let CSS + IntersectionObserver handle it
+    // But we can still keep the delay if we want them to cascade on initial load
+    card.style.transitionDelay = `${delay}s`;
 
     const typeInfo = getTypeInfo(animal.type);
 
@@ -246,6 +329,12 @@ function createAnimalCard(animal, delay) {
     `;
 
     card.addEventListener('click', () => openModal(animal));
+
+    // If explorer exists, observe it
+    if (window.animalObserver) {
+        window.animalObserver.observe(card);
+    }
+
     return card;
 }
 
@@ -273,20 +362,21 @@ function getTypeInfo(type) {
 function setupEventListeners() {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all
             filterBtns.forEach(b => b.classList.remove('active'));
-            // Add to clicked
             btn.classList.add('active');
-
-            const filter = btn.dataset.filter;
-
-            if (filter === 'all') {
-                renderAnimals(animals);
-            } else {
-                const filtered = animals.filter(a => a.type === filter);
-                renderAnimals(filtered);
-            }
+            state.category = btn.dataset.filter;
+            applyFilters();
         });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+        state.search = e.target.value;
+        applyFilters();
+    });
+
+    dietFilter.addEventListener('change', (e) => {
+        state.diet = e.target.value;
+        applyFilters();
     });
 
     closeModal.addEventListener('click', () => {
@@ -330,18 +420,16 @@ function openModal(animal) {
     modal.classList.add('show');
 }
 
-// Add animation keyframes via JS (optional, or keep in CSS)
-const styleSheet = document.createElement("style");
-styleSheet.innerText = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(styleSheet);
+function initScrollAnimations() {
+    window.animalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Select elements to animate
+    const elementsToAnimate = document.querySelectorAll('.section-title, .filters, .recommended-section, .animal-card');
+    elementsToAnimate.forEach(el => window.animalObserver.observe(el));
+}

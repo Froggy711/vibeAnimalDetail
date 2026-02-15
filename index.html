@@ -33,8 +33,15 @@
                 <a href="#" class="active">หน้าหลัก</a>
                 <a href="#explore">สำรวจ</a>
                 <a href="about.html">เกี่ยวกับ</a>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
             </div>
         </nav>
+
+        <div id="funFact" class="fun-fact-card fadeInUp" style="animation-delay: 1.2s;">
+            <!-- Fun fact injected by JS -->
+        </div>
 
         <div class="hero">
             <h1>สำรวจโลกแห่ง<br><span class="gradient-text">สัตว์มหัศจรรย์</span></h1>
@@ -52,7 +59,24 @@
         </section>
 
         <section class="filters">
-            <h2>ประเภทสัตว์ (Categories)</h2>
+            <h2 class="section-title">สำรวจสารานุกรม (Explore Animals)</h2>
+
+            <div class="search-wrap">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="ค้นหาชื่อสัตว์ที่ต้องการ...">
+                </div>
+                <div class="filter-select">
+                    <i class="fa-solid fa-utensils"></i>
+                    <select id="dietFilter">
+                        <option value="all">อาหารทั้งหมด (All Diets)</option>
+                        <option value="carnivore">สัตว์กินเนื้อ (Carnivore)</option>
+                        <option value="herbivore">สัตว์กินพืช (Herbivore)</option>
+                        <option value="omnivore">สัตว์กินพืชและสัตว์ (Omnivore)</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
                 <button class="filter-btn" data-filter="land"><i class="fa-solid fa-earth-americas"></i>
