@@ -316,14 +316,14 @@ function endGame() {
     // Show leaderboard
     displayLeaderboard();
 
-    // Confetti if high score
-    if (isHighScore(gameState.score)) {
+    // Confetti if high score for this mode
+    if (isHighScore(gameState.score, gameState.currentMode)) {
         showConfetti();
     }
 }
 
 // Save high score
-function saveHighScore(score) {
+function saveHighScore(score, mode) {
     const userEmail = getCurrentUserEmail();
     const scores = JSON.parse(localStorage.getItem('gameScores') || '{}');
 
@@ -333,19 +333,19 @@ function saveHighScore(score) {
 
     scores[userEmail].push({
         score: score,
-        mode: gameState.currentMode,
+        mode: mode || gameState.currentMode,
         date: new Date().toISOString()
     });
 
-    // Keep only top 10 scores per user
+    // Keep only top 20 scores per user across all modes
     scores[userEmail].sort((a, b) => b.score - a.score);
-    scores[userEmail] = scores[userEmail].slice(0, 10);
+    scores[userEmail] = scores[userEmail].slice(0, 20);
 
     localStorage.setItem('gameScores', JSON.stringify(scores));
 }
 
-// Check if high score
-function isHighScore(score) {
+// Check if high score for a specific mode
+function isHighScore(score, mode) {
     const userEmail = getCurrentUserEmail();
     const scores = JSON.parse(localStorage.getItem('gameScores') || '{}');
 
@@ -353,16 +353,22 @@ function isHighScore(score) {
         return true;
     }
 
-    return score > scores[userEmail][0].score;
+    // Filter scores by mode
+    const modeScores = scores[userEmail].filter(s => s.mode === mode);
+    if (modeScores.length === 0) return true;
+
+    return score > modeScores[0].score;
 }
 
-// Display leaderboard
-function displayLeaderboard() {
+// Display leaderboard with optional mode filter
+function displayLeaderboard(filterMode = 'all') {
     const leaderboard = document.getElementById('leaderboard');
+    if (!leaderboard) return;
+
     const allScores = JSON.parse(localStorage.getItem('gameScores') || '{}');
 
     // Flatten all scores
-    const flatScores = [];
+    let flatScores = [];
     Object.keys(allScores).forEach(email => {
         allScores[email].forEach(scoreData => {
             flatScores.push({
@@ -372,18 +378,42 @@ function displayLeaderboard() {
         });
     });
 
+    // Apply mode filter
+    if (filterMode !== 'all') {
+        flatScores = flatScores.filter(s => s.mode === filterMode);
+    }
+
     // Sort by score
     flatScores.sort((a, b) => b.score - a.score);
 
     // Display top 10
     leaderboard.innerHTML = '';
+
+    if (flatScores.length === 0) {
+        leaderboard.innerHTML = '<div style="padding: 20px; color: var(--text-muted);">ยังไม่มีคะแนนในโหมดนี้</div>';
+        return;
+    }
+
     flatScores.slice(0, 10).forEach((entry, index) => {
         const row = document.createElement('div');
         row.className = 'leaderboard-row';
+
+        // Mode icon mapping
+        let modeIcon = '';
+        switch (entry.mode) {
+            case 'guess-animal': modeIcon = 'fa-image'; break;
+            case 'habitat-match': modeIcon = 'fa-tree'; break;
+            case 'diet-quiz': modeIcon = 'fa-utensils'; break;
+            case 'true-false': modeIcon = 'fa-question'; break;
+        }
+
         row.innerHTML = `
-            <span class="rank">#${index + 1}</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="rank">#${index + 1}</span>
+                ${filterMode === 'all' ? `<i class="fa-solid ${modeIcon}" style="font-size: 0.8rem; opacity: 0.6;" title="${entry.mode}"></i>` : ''}
+            </div>
             <span class="player">${entry.email.split('@')[0]}</span>
-            <span class="score">${entry.score}</span>
+            <span class="score">${entry.score.toLocaleString()}</span>
         `;
         leaderboard.appendChild(row);
     });
@@ -409,6 +439,35 @@ function showConfetti() {
         confettiContainer.remove();
     }, 5000);
 }
+
+// Initial Setup for Result Tabs
+function setupResultLeaderboardTabs() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    if (!tabs.length) return;
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            displayLeaderboard(tab.dataset.mode);
+        });
+    });
+}
+
+// Call setup on game end to ensure elements are ready
+const originalEndGame = endGame;
+endGame = function () {
+    originalEndGame();
+    setupResultLeaderboardTabs();
+
+    // Set active tab to current mode by default
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => {
+        if (tab.dataset.mode === gameState.currentMode) {
+            tab.click();
+        }
+    });
+};
 
 // Restart game
 function restartGame() {

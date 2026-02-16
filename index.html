@@ -79,6 +79,14 @@
                 <p style="color: var(--text-muted); font-size: 1rem;">ท้าทายความรู้ของคุณและขึ้นเป็นที่หนึ่ง!</p>
             </div>
 
+            <div class="leaderboard-tabs" style="margin-bottom: 30px;">
+                <button class="tab-btn active" data-mode="all">ทั้งหมด</button>
+                <button class="tab-btn" data-mode="guess-animal">ทายชื่อสัตว์</button>
+                <button class="tab-btn" data-mode="habitat-match">ทายที่อยู่</button>
+                <button class="tab-btn" data-mode="diet-quiz">ทายอาหาร</button>
+                <button class="tab-btn" data-mode="true-false">จริง/เท็จ</button>
+            </div>
+
             <div id="homeLeaderboard"
                 style="background: var(--bg-card); border: var(--glass-border); border-radius: var(--radius); padding: 25px; max-width: 800px; margin: 0 auto;">
                 <!-- Leaderboard will be injected here -->
@@ -181,12 +189,14 @@
         });
 
         // Load and display leaderboard
-        function loadHomeLeaderboard() {
+        function loadHomeLeaderboard(filterMode = 'all') {
             const leaderboard = document.getElementById('homeLeaderboard');
+            if (!leaderboard) return;
+
             const allScores = JSON.parse(localStorage.getItem('gameScores') || '{}');
 
             // Flatten all scores
-            const flatScores = [];
+            let flatScores = [];
             Object.keys(allScores).forEach(email => {
                 allScores[email].forEach(scoreData => {
                     flatScores.push({
@@ -197,6 +207,11 @@
                 });
             });
 
+            // Filter by mode
+            if (filterMode !== 'all') {
+                flatScores = flatScores.filter(s => s.mode === filterMode);
+            }
+
             // Sort by score
             flatScores.sort((a, b) => b.score - a.score);
 
@@ -205,8 +220,7 @@
                 leaderboard.innerHTML = `
                     <div style="text-align: center; padding: 40px; color: var(--text-muted);">
                         <i class="fa-solid fa-gamepad" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
-                        <p style="font-size: 1.1rem;">ยังไม่มีคะแนนในระบบ</p>
-                        <p style="font-size: 0.9rem; margin-top: 10px;">เป็นคนแรกที่เล่นเกมและทำคะแนนสูงสุด!</p>
+                        <p style="font-size: 1.1rem;">ยังไม่มีคะแนนในโหมดนี้</p>
                     </div>
                 `;
             } else {
@@ -240,8 +254,24 @@
             }
         }
 
+        // Initialize Home Tabs
+        function setupHomeLeaderboardTabs() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    loadHomeLeaderboard(tab.dataset.mode);
+                });
+            });
+        }
+
         // Load leaderboard on page load
-        document.addEventListener('DOMContentLoaded', loadHomeLeaderboard);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHomeLeaderboard();
+            setupHomeLeaderboardTabs();
+        });
+
     </script>
 </body>
 
