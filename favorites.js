@@ -65,8 +65,10 @@ function addToFavorites(animalName) {
     if (!isFavorite(animalName)) {
         favorites.push(animalName);
         saveUserFavorites(favorites);
+        console.log(`[Favorites] Added "${animalName}" to favorites. User: ${getCurrentUserEmail()}`);
         return true;
     }
+    console.log(`[Favorites] "${animalName}" already in favorites.`);
     return false;
 }
 
@@ -80,10 +82,12 @@ function removeFromFavorites(animalName) {
     );
 
     if (index > -1) {
-        favorites.splice(index, 1);
+        const removed = favorites.splice(index, 1);
         saveUserFavorites(favorites);
+        console.log(`[Favorites] Removed "${removed[0]}" from favorites. User: ${getCurrentUserEmail()}`);
         return true;
     }
+    console.log(`[Favorites] Could not find "${animalName}" to remove.`);
     return false;
 }
 
