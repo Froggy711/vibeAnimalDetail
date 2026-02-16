@@ -42,7 +42,8 @@ function saveUserFavorites(favorites) {
 function normalizeAnimalName(name) {
     if (!name) return '';
     // Remove everything in parentheses and trim spaces
-    return name.split('(')[0].trim().toLowerCase();
+    const normalized = name.split('(')[0].trim().toLowerCase();
+    return normalized;
 }
 
 // Check if animal is favorited
@@ -50,9 +51,11 @@ function isFavorite(animalName) {
     const favorites = getUserFavorites();
     const normalizedTarget = normalizeAnimalName(animalName);
 
-    return favorites.some(fav =>
+    const result = favorites.some(fav =>
         normalizeAnimalName(fav) === normalizedTarget || fav === animalName
     );
+    console.log(`[Favorites] isFavorite("${animalName}"): ${result}`);
+    return result;
 }
 
 // Add animal to favorites

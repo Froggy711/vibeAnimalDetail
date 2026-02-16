@@ -248,13 +248,42 @@ const state = {
 
 // Initial Render
 document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    renderRecommended();
-    renderAnimals(animals);
-    renderFunFact();
-    setupEventListeners();
+    // Check if we are on a page where these elements exist
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Initialize components only if elements exist
+    if (filterBtns.length > 0 || searchInput || dietFilter) {
+        setupEventListeners();
+    }
+
+    if (document.getElementById('startCompareBtn')) {
+        setupComparisonListeners();
+    }
+
     initScrollAnimations();
-    setupComparisonListeners();
+
+    if (animalsGrid) {
+        renderAnimals(animals);
+    }
+
+    if (recommendedGrid) {
+        renderRecommended();
+    }
+
+    // Theme initialization
+    initTheme();
+
+    if (funFactEl) {
+        renderFunFact();
+    }
 });
 
 // Theme Logic
@@ -385,6 +414,7 @@ function createAnimalCard(animal, delay) {
 
 // Render Function
 function renderAnimals(data) {
+    if (!animalsGrid) return;
     animalsGrid.innerHTML = '';
 
     data.forEach((animal, index) => {
@@ -405,28 +435,36 @@ function getTypeInfo(type) {
 
 // Filter Logic
 function setupEventListeners() {
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            state.category = btn.dataset.filter;
+    if (filterBtns) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.category = btn.dataset.filter;
+                applyFilters();
+            });
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            state.search = e.target.value;
             applyFilters();
         });
-    });
+    }
 
-    searchInput.addEventListener('input', (e) => {
-        state.search = e.target.value;
-        applyFilters();
-    });
+    if (dietFilter) {
+        dietFilter.addEventListener('change', (e) => {
+            state.diet = e.target.value;
+            applyFilters();
+        });
+    }
 
-    dietFilter.addEventListener('change', (e) => {
-        state.diet = e.target.value;
-        applyFilters();
-    });
-
-    closeModal.addEventListener('click', () => {
-        modal.classList.remove('show');
-    });
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+    }
 
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -435,8 +473,22 @@ function setupEventListeners() {
     });
 }
 
+// Check if animal is favorited
+// This function is assumed to be defined in favorites.js or globally available
+// function isFavorite(animalName) {
+//     const favorites = getUserFavorites();
+//     const normalizedTarget = normalizeAnimalName(animalName);
+
+//     const result = favorites.some(fav =>
+//         normalizeAnimalName(fav) === normalizedTarget || fav === animalName
+//     );
+//     return result;
+// }
+
 // Modal Logic
 function openModal(animal) {
+    if (!modal || !modalBody) return;
+
     const typeInfo = getTypeInfo(animal.type);
 
     modalBody.innerHTML = `
