@@ -38,17 +38,28 @@ function saveUserFavorites(favorites) {
     }));
 }
 
+// Helper to normalize names for comparison
+function normalizeAnimalName(name) {
+    if (!name) return '';
+    // Remove everything in parentheses and trim spaces
+    return name.split('(')[0].trim().toLowerCase();
+}
+
 // Check if animal is favorited
 function isFavorite(animalName) {
     const favorites = getUserFavorites();
-    return favorites.includes(animalName);
+    const normalizedTarget = normalizeAnimalName(animalName);
+
+    return favorites.some(fav =>
+        normalizeAnimalName(fav) === normalizedTarget || fav === animalName
+    );
 }
 
 // Add animal to favorites
 function addToFavorites(animalName) {
     const favorites = getUserFavorites();
 
-    if (!favorites.includes(animalName)) {
+    if (!isFavorite(animalName)) {
         favorites.push(animalName);
         saveUserFavorites(favorites);
         return true;
@@ -59,7 +70,11 @@ function addToFavorites(animalName) {
 // Remove animal from favorites
 function removeFromFavorites(animalName) {
     let favorites = getUserFavorites();
-    const index = favorites.indexOf(animalName);
+    const normalizedTarget = normalizeAnimalName(animalName);
+
+    const index = favorites.findIndex(fav =>
+        normalizeAnimalName(fav) === normalizedTarget || fav === animalName
+    );
 
     if (index > -1) {
         favorites.splice(index, 1);
@@ -88,7 +103,7 @@ function getFavoritesCount() {
 // Get favorite animals data
 function getFavoriteAnimals(animalsData) {
     const favorites = getUserFavorites();
-    return animalsData.filter(animal => favorites.includes(animal.name));
+    return animalsData.filter(animal => isFavorite(animal.name));
 }
 
 // Clear all favorites for current user
