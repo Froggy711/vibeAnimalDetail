@@ -367,23 +367,24 @@ function displayLeaderboard(filterMode = 'all') {
 
     const allScores = JSON.parse(localStorage.getItem('gameScores') || '{}');
 
-    // Flatten all scores
-    let flatScores = [];
+    // Group scores by user and find the highest score per user
+    const bestScoresByUser = {};
     Object.keys(allScores).forEach(email => {
         allScores[email].forEach(scoreData => {
-            flatScores.push({
-                email: email,
-                ...scoreData
-            });
+            // Apply mode filter first
+            if (filterMode !== 'all' && scoreData.mode !== filterMode) return;
+
+            if (!bestScoresByUser[email] || scoreData.score > bestScoresByUser[email].score) {
+                bestScoresByUser[email] = {
+                    email: email,
+                    ...scoreData
+                };
+            }
         });
     });
 
-    // Apply mode filter
-    if (filterMode !== 'all') {
-        flatScores = flatScores.filter(s => s.mode === filterMode);
-    }
-
-    // Sort by score
+    // Convert to array and sort
+    let flatScores = Object.values(bestScoresByUser);
     flatScores.sort((a, b) => b.score - a.score);
 
     // Display top 10
