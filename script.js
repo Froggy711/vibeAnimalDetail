@@ -7,7 +7,9 @@ const animals = [
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "สิงโตเป็นสัตว์ตระกูลแมวที่มีขนาดใหญ่ที่สุดในแอฟริกา มีฉายาว่า 'เจ้าป่า' ตัวผู้มีแผงคอที่สง่างาม สิงโตมักอยู่รวมกันเป็นฝูง",
-        image: "picAnimal/สัตว์บก/สิงโต (Lion).jpg"
+        image: "picAnimal/สัตว์บก/สิงโต (Lion).jpg",
+        location: { x: 55, y: 60 }, // Africa
+        foodChain: { eats: ["ม้าลาย", "กวาง", "ควายป่า"], eatenBy: ["ไม่มี (Apex Predator)"] }
     },
     {
         id: 2,
@@ -16,7 +18,9 @@ const animals = [
         habitat: "มหาสมุทรทั่วโลก (Oceans)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "ฉลามขาวเป็นปลานักล่าขนาดใหญ่ที่สุดในโลก มีฟันที่แหลมคมและประสาทสัมผัสในการดมกลิ่นเลือดที่ยอดเยี่ยม",
-        image: "https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&fit=crop&q=80&w=1000"
+        image: "https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&fit=crop&q=80&w=1000",
+        location: { x: 30, y: 50 }, // Atlantic/Pacific
+        foodChain: { eats: ["แมวน้ำ", "ปลาใหญ่", "โลมา"], eatenBy: ["วาฬเพชฌฆาต"] }
     },
     {
         id: 3,
@@ -25,7 +29,9 @@ const animals = [
         habitat: "ป่าและพื้นที่ใกล้แหล่งน้ำ (Forests & Lakes)",
         diet: "สัตว์กินเนื้อ/ปลา (Carnivore/Piscivore)",
         description: "นกอินทรีหัวขาวเป็นสัญลักษณ์ของความอิสระและความแข็งแกร่ง มีสายตาที่เฉียบคมและกรงเล็บที่ทรงพลัง",
-        image: "picAnimal/สัตว์ปีก/นกอินทรีหัวขาว (Bald Eagle).jpg"
+        image: "picAnimal/สัตว์ปีก/นกอินทรีหัวขาว (Bald Eagle).jpg",
+        location: { x: 20, y: 35 }, // North America
+        foodChain: { eats: ["ปลา", "กระต่าย", "นกขนาดเล็ก"], eatenBy: ["ไม่มี (Apex Predator)"] }
     },
     {
         id: 4,
@@ -34,7 +40,9 @@ const animals = [
         habitat: "ป่าและทุ่งหญ้า (Forests & Savannahs)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ช้างแอฟริกาเป็นสัตว์บกที่มีขนาดใหญ่ที่สุดในโลก มีงวงที่ยาวและใบหูขนาดใหญ่เพื่อระบายความร้อน",
-        image: "picAnimal/สัตว์บก/ช้างแอฟริกา (African Elephant).jpg"
+        image: "picAnimal/สัตว์บก/ช้างแอฟริกา (African Elephant).jpg",
+        location: { x: 52, y: 65 }, // Africa
+        foodChain: { eats: ["หญ้า", "เปลือกไม้", "ผลไม้"], eatenBy: ["สิงโต (เฉพาะตัวอ่อน)"] }
     },
     {
         id: 5,
@@ -43,7 +51,9 @@ const animals = [
         habitat: "ทะเลและมหาสมุทร (Seas & Oceans)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "โลมาเป็นสัตว์เลี้ยงลูกด้วยนมที่ฉลาดและขี้เล่น ชอบอยู่รวมกันเป็นฝูงและสามารถสื่อสารกันได้ด้วยเสียง",
-        image: "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?auto=format&fit=crop&q=80&w=1000"
+        image: "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?auto=format&fit=crop&q=80&w=1000",
+        location: { x: 75, y: 55 }, // Indian Ocean
+        foodChain: { eats: ["ปลา", "หมึก"], eatenBy: ["ฉลาม", "วาฬเพชฌฆาต"] }
     },
     {
         id: 6,
@@ -52,9 +62,10 @@ const animals = [
         habitat: "ป่าโปร่ง (Open Forests)",
         diet: "สัตว์กินพืชและแมลง (Omnivore)",
         description: "นกยูงตัวผู้มีขนหางที่สวยงามและสามารถรำแพนเพื่อเกี้ยวพาราสีตัวเมีย เป็นสัญลักษณ์ของความงดงาม",
-        image: "picAnimal/สัตว์ปีก/นกยูง (Peacock).jpg"
+        image: "picAnimal/สัตว์ปีก/นกยูง (Peacock).jpg",
+        location: { x: 70, y: 50 }, // Asia (India)
+        foodChain: { eats: ["เมล็ดพืช", "แมลง", "สัตว์เลื้อยคลานขนาดเล็ก"], eatenBy: ["เสือ", "เสือดาว"] }
     },
-    // New Land Animals
     {
         id: 7,
         name: "ยีราฟ (Giraffe)",
@@ -62,7 +73,9 @@ const animals = [
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ยีราฟเป็นสัตว์บกที่สูงที่สุดในโลก มีคอที่ยาวมากเพื่อช่วยในการกินใบไม้จากยอดไม้สูง",
-        image: "picAnimal/สัตว์บก/ยีราฟ (Giraffe).jpg"
+        image: "picAnimal/สัตว์บก/ยีราฟ (Giraffe).jpg",
+        location: { x: 58, y: 62 }, // Africa
+        foodChain: { eats: ["ใบอะเคเซีย", "ยอดไม้"], eatenBy: ["สิงโต", "ไฮยีน่า"] }
     },
     {
         id: 8,
@@ -71,7 +84,9 @@ const animals = [
         habitat: "ป่าทึบและทุ่งหญ้า (Forests & Grasslands)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "เสือโคร่งเป็นสัตว์ตระกูลแมวที่มีขนาดใหญ่ที่สุด มีลายพาดกลอนที่เป็นเอกลักษณ์เฉพาะตัวในแต่ละตัว",
-        image: "picAnimal/สัตว์บก/เสือโคร่ง (Tiger).jpg"
+        image: "picAnimal/สัตว์บก/เสือโคร่ง (Tiger).jpg",
+        location: { x: 78, y: 45 }, // Asia
+        foodChain: { eats: ["กวาง", "หมูป่า", "พุ่งป่า"], eatenBy: ["ไม่มี (Apex Predator)"] }
     },
     {
         id: 9,
@@ -80,7 +95,9 @@ const animals = [
         habitat: "ทุ่งหญ้าในออสเตรเลีย (Australian Outback)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "จิงโจ้เป็นสัตว์ที่มีกระเป๋าหน้าท้องสำหรับเลี้ยงลูก และใช้การกระโดดเป็นวิธีการเคลื่อนที่หลัก",
-        image: "picAnimal/สัตว์บก/จิงโจ้ (Kangaroo).jpg"
+        image: "picAnimal/สัตว์บก/จิงโจ้ (Kangaroo).jpg",
+        location: { x: 85, y: 75 }, // Australia
+        foodChain: { eats: ["หญ้า", "พุ่มไม้"], eatenBy: ["หมาป่าดิงโก", "มนุษย์"] }
     },
     {
         id: 10,
@@ -89,7 +106,9 @@ const animals = [
         habitat: "ป่าสนบนภูเขาสูง (High-altitude Forests)",
         diet: "สัตว์กินพืช/ไผ่ (Herbivore/Bamboo)",
         description: "แพนด้าแดงมีขนหนานุ่มสีน้ำตาลแดงและหางเป็นพวง ชอบอาศัยอยู่บนต้นไม้เป็นส่วนใหญ่",
-        image: "picAnimal/สัตว์บก/แพนด้าแดง (Red Panda).jpg"
+        image: "picAnimal/สัตว์บก/แพนด้าแดง (Red Panda).jpg",
+        location: { x: 75, y: 40 }, // Himalayas
+        foodChain: { eats: ["ลูกไผ่", "ผลไม้", "แมลง"], eatenBy: ["เสือดาวหิมะ", "มาร์เทน"] }
     },
     {
         id: 11,
@@ -98,9 +117,10 @@ const animals = [
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ม้าลายเป็นสัตว์ที่มีลายสีขาวดำพาดขวางทั้งตัว ซึ่งช่วยในการอำพรางตัวจากนักล่า",
-        image: "picAnimal/สัตว์บก/ม้าลาย (Zebra).jpg"
+        image: "picAnimal/สัตว์บก/ม้าลาย (Zebra).jpg",
+        location: { x: 55, y: 68 }, // Africa
+        foodChain: { eats: ["หญ้า"], eatenBy: ["สิงโต", "เสือดาว", "ไฮยีน่า"] }
     },
-    // New Water Animals
     {
         id: 12,
         name: "วาฬสีน้ำเงิน (Blue Whale)",
@@ -108,7 +128,9 @@ const animals = [
         habitat: "มหาสมุทรทั่วโลก (Oceans)",
         diet: "สัตว์กินเนื้อ/แพลงก์ตอน (Carnivore/Krill)",
         description: "วาฬสีน้ำเงินเป็นสัตว์ที่มีขนาดใหญ่ที่สุดที่เคยอาศัยอยู่บนโลกใบนี้ หัวใจของมันมีขนาดเท่ากับรถยนต์หนึ่งคัน",
-        image: "picAnimal/สัตว์น้ำ/วาฬสีน้ำเงิน (Blue Whale).jpg"
+        image: "picAnimal/สัตว์น้ำ/วาฬสีน้ำเงิน (Blue Whale).jpg",
+        location: { x: 45, y: 70 }, // Oceans
+        foodChain: { eats: ["คริลล์ (กุ้งฝอย)", "แพลงก์ตอน"], eatenBy: ["ไม่มี (Apex Predator)"] }
     },
     {
         id: 13,
@@ -117,7 +139,9 @@ const animals = [
         habitat: "แนวปะการังและพื้นหิน (Reefs & Rocks)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "หมึกยักษ์เป็นสัตว์ไม่มีกระดูกสันหลังที่ฉลาดมาก สามารถเปลี่ยนสีและสัมผัสผิวหนังเพื่ออำพรางตัวได้",
-        image: "picAnimal/สัตว์น้ำ/หมึกยักษ์ (Octopus).jpg"
+        image: "picAnimal/สัตว์น้ำ/หมึกยักษ์ (Octopus).jpg",
+        location: { x: 80, y: 35 }, // Pacific Reefs
+        foodChain: { eats: ["ปู", "กุ้ง", "หอย"], eatenBy: ["ฉลาม", "ปลาไหลมอเรย์"] }
     },
     {
         id: 14,
@@ -126,7 +150,9 @@ const animals = [
         habitat: "ทะเลเขตร้อนและอบอุ่น (Tropical Seas)",
         diet: "สัตว์กินพืชและสัตว์ (Omnivore)",
         description: "เต่าทะเลใช้ชีวิตส่วนใหญ่อยู่ในน้ำ และจะขึ้นมาบนบกเพียงเพื่อวางไข่บนชายหาดเท่านั้น",
-        image: "picAnimal/สัตว์น้ำ/เต่าทะเล (Sea Turtle).jpg"
+        image: "picAnimal/สัตว์น้ำ/เต่าทะเล (Sea Turtle).jpg",
+        location: { x: 35, y: 55 }, // Tropical Waters
+        foodChain: { eats: ["แมงกะพรุน", "สาหร่าย", "ฟองน้ำ"], eatenBy: ["ฉลาม (ตัวเต็มวัย)", "นก/ปู (ตัวอ่อน)"] }
     },
     {
         id: 15,
@@ -135,7 +161,9 @@ const animals = [
         habitat: "พื้นทะเลที่มีสาหร่ายและหญ้าทะเล (Seagrass beds)",
         diet: "สัตว์กินเนื้อขนาดเล็ก (Carnivore)",
         description: "ม้าน้ำเป็นปลาที่มีหัวคล้ายม้า และเป็นหนึ่งในสัตว์ไม่กี่ชนิดที่ตัวผู้เป็นฝ่ายอุ้มท้องและคลอดลูก",
-        image: "picAnimal/สัตว์น้ำ/ม้าน้ำ (Seahorse).jpg"
+        image: "picAnimal/สัตว์น้ำ/ม้าน้ำ (Seahorse).jpg",
+        location: { x: 25, y: 60 }, // Coastal waters
+        foodChain: { eats: ["แพลงก์ตอนสัตว์", "กุ้งขนาดเล็ก"], eatenBy: ["ปลาใหญ่", "ปู", "เพนกวิน"] }
     },
     {
         id: 16,
@@ -144,9 +172,10 @@ const animals = [
         habitat: "มหาสมุทร (Oceans)",
         diet: "สัตว์กินเนื้อขนาดเล็ก (Carnivore)",
         description: "แมงกะพรุนเป็นสัตว์โปร่งแสงที่ไม่มีสมอง หัวใจ หรือกระดูก มีเข็มพิษอยู่ที่หนวดเพื่อป้องกันตัว",
-        image: "picAnimal/สัตว์น้ำ/แมงกะพรุน (Jellyfish).jpg"
+        image: "picAnimal/สัตว์น้ำ/แมงกะพรุน (Jellyfish).jpg",
+        location: { x: 65, y: 30 }, // Oceans
+        foodChain: { eats: ["แพลงก์ตอน", "ไข่ปลา"], eatenBy: ["เต่าทะเล", "ปลาแสงอาทิตย์"] }
     },
-    // New Poultry Animals
     {
         id: 17,
         name: "นกเค้าแมว (Owl)",
@@ -154,7 +183,9 @@ const animals = [
         habitat: "ป่าไม้และพื้นที่เกษตร (Forests & Farmlands)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "นกเค้าแมวเป็นนักล่าในเวลากลางคืนที่มีสายตาดีเยี่ยมและสามารถบินได้เงียบกริบเพื่อไม่ให้เหยื่อรู้ตัว",
-        image: "picAnimal/สัตว์ปีก/นกเค้าแมว (Owl).jpg"
+        image: "picAnimal/สัตว์ปีก/นกเค้าแมว (Owl).jpg",
+        location: { x: 50, y: 30 }, // Europe/Asia
+        foodChain: { eats: ["หนู", "แมลง", "นกขนาดเล็ก"], eatenBy: ["นกเหยี่ยวขนาดใหญ่", "งู (กินลูกนก)"] }
     },
     {
         id: 18,
@@ -163,7 +194,9 @@ const animals = [
         habitat: "ป่าฝนเขตร้อน (Tropical Rainforests)",
         diet: "สัตว์กินพืช/ผลไม้ (Herbivore/Fruit)",
         description: "นกแก้วมาคอว์ขึ้นชื่อเรื่องขนที่มีสีสันสดใสและความฉลาด สามารถเลียนเสียงพูดของมนุษย์ได้",
-        image: "picAnimal/สัตว์ปีก/นกแก้วมาคอว์ (Macaw).jpg"
+        image: "picAnimal/สัตว์ปีก/นกแก้วมาคอว์ (Macaw).jpg",
+        location: { x: 32, y: 62 }, // South America
+        foodChain: { eats: ["เมล็ดพืช", "ผลไม้", "ถั่ว"], eatenBy: ["งูเหลือม", "นกอินทรี", "เสือจาการ์"] }
     },
     {
         id: 19,
@@ -172,7 +205,9 @@ const animals = [
         habitat: "ทะเลสาบน้ำเค็มและชายฝั่ง (Saline Lakes & Coasts)",
         diet: "สัตว์กินเนื้อ/แพลงก์ตอน (Carnivore/Plankton)",
         description: "นกฟลามิงโกมีขนสีชมพูที่เกิดจากการกินกุ้งและสาหร่ายที่มีสารคาร์โรทีนอยด์",
-        image: "picAnimal/สัตว์ปีก/นกฟลามิงโก (Flamingo).jpg"
+        image: "picAnimal/สัตว์ปีก/นกฟลามิงโก (Flamingo).jpg",
+        location: { x: 48, y: 55 }, // Africa/S. America
+        foodChain: { eats: ["กุ้งจิ๋ว", "สาหร่ายสีน้ำเงินแกมเขียว"], eatenBy: ["ไฮยีน่า", "เสือจาการ์", "ปลาไหล"] }
     },
     {
         id: 20,
@@ -181,7 +216,9 @@ const animals = [
         habitat: "แม่น้ำและทะเลสาบ (Rivers & Lakes)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "หงส์ขาวเป็นสัญลักษณ์ของความสง่างามและความซื่อสัตย์ มักอาศัยอยู่ในแหล่งน้ำจืดที่เงียบสงบ",
-        image: "picAnimal/สัตว์ปีก/หงส์ขาว (Mute Swan).jpg"
+        image: "picAnimal/สัตว์ปีก/หงส์ขาว (Mute Swan).jpg",
+        location: { x: 45, y: 35 }, // Europe
+        foodChain: { eats: ["พืชน้ำ", "รากไม้"], eatenBy: ["สุนัขจิ้งจอก", "แรคคูน (กินไข่)"] }
     },
     {
         id: 21,
@@ -190,7 +227,9 @@ const animals = [
         habitat: "ป่าฝนเขตร้อน (Tropical Rainforests)",
         diet: "สัตว์กินพืช/ผลไม้ (Herbivore/Fruit)",
         description: "นกทูแคนมีจะงอยปากขนาดใหญ่ที่มีสีสันสวยงาม ซึ่งช่วยในการเอื้อมเก็บผลไม้ที่อยู่ห่างไกล",
-        image: "picAnimal/สัตว์ปีก/นกทูแคน (Toucan).jpg"
+        image: "picAnimal/สัตว์ปีก/นกทูแคน (Toucan).jpg",
+        location: { x: 35, y: 65 }, // South America
+        foodChain: { eats: ["ผลไม้", "แมลง", "ไข่นกเล็ก"], eatenBy: ["เสือจาการ์", "งู", "เหยี่ยว"] }
     }
 ];
 
@@ -437,9 +476,35 @@ function openModal(animal) {
                 <span class="value">${animal.diet}</span>
             </div>
             
-            <div class="detail-row" style="border: none;">
+            <div class="detail-row" style="border: none; padding-bottom: 0;">
                 <span class="label"><i class="fa-solid fa-info-circle"></i> ข้อมูลทั่วไป (Description)</span>
                 <p class="value" style="margin-top: 5px; line-height: 1.6;">${animal.description}</p>
+            </div>
+
+            <!-- Educational Expert Features -->
+            <div class="modal-educational-grid">
+                <!-- World Map -->
+                <div class="map-container">
+                    <div class="map-title"><i class="fa-solid fa-earth-americas"></i> แผนที่ถิ่นที่อยู่</div>
+                    <div class="world-map-svg">
+                        <div class="map-marker" style="left: ${animal.location.x}%; top: ${animal.location.y}%;"></div>
+                    </div>
+                </div>
+
+                <!-- Food Chain -->
+                <div class="food-chain-container">
+                    <div class="food-chain-title"><i class="fa-solid fa-link"></i> ห่วงโซ่อาหาร (Food Chain)</div>
+                    <div class="chain-visual">
+                        <div class="chain-node eats">
+                            <span class="node-label">กิน:</span>
+                            <span class="node-value">${animal.foodChain.eats.join(', ')}</span>
+                        </div>
+                        <div class="chain-node eaten-by">
+                            <span class="node-label">ถูกกินโดย:</span>
+                            <span class="node-value">${animal.foodChain.eatenBy.join(', ')}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     `;
