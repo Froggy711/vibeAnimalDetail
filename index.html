@@ -69,6 +69,29 @@
             </div>
         </section>
 
+        <!-- Leaderboard Section -->
+        <section class="leaderboard-section" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px;">
+                    <i class="fa-solid fa-trophy" style="color: var(--accent);"></i>
+                    <span class="gradient-text"> ตารางคะแนนสูงสุด (Leaderboard)</span>
+                </h2>
+                <p style="color: var(--text-muted); font-size: 1rem;">ท้าทายความรู้ของคุณและขึ้นเป็นที่หนึ่ง!</p>
+            </div>
+
+            <div id="homeLeaderboard"
+                style="background: var(--bg-card); border: var(--glass-border); border-radius: var(--radius); padding: 25px; max-width: 800px; margin: 0 auto;">
+                <!-- Leaderboard will be injected here -->
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <a href="game.html" class="btn-primary"
+                    style="display: inline-block; padding: 12px 35px; background: linear-gradient(90deg, #ff6b00, #ff0055); border-radius: 30px; color: white; font-weight: 600; text-decoration: none; transition: var(--transition); font-size: 0.95rem;">
+                    <i class="fa-solid fa-gamepad"></i> เริ่มเล่นเกมทายสัตว์ <i class="fa-solid fa-play"></i>
+                </a>
+            </div>
+        </section>
+
         <section class="filters">
             <h2 class="section-title">สำรวจสารานุกรม (Explore Animals)</h2>
 
@@ -128,28 +151,7 @@
         <button id="clearCompareBtn" class="btn-text">ล้างทั้งหมด</button>
     </div>
 
-    <!-- Leaderboard Section -->
-    <section class="leaderboard-section" style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 10px;">
-                <i class="fa-solid fa-trophy" style="color: var(--accent);"></i>
-                <span class="gradient-text"> ตารางคะแนนสูงสุด</span>
-            </h2>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">ผู้เล่นที่ทำคะแนนสูงสุดในเกมทายสัตว์</p>
-        </div>
 
-        <div id="homeLeaderboard"
-            style="background: var(--bg-card); border: var(--glass-border); border-radius: var(--radius); padding: 30px; max-width: 800px; margin: 0 auto;">
-            <!-- Leaderboard will be injected here -->
-        </div>
-
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="game.html" class="btn-primary"
-                style="display: inline-block; padding: 15px 40px; background: linear-gradient(90deg, #ff6b00, #ff0055); border-radius: 30px; color: white; font-weight: 600; text-decoration: none; transition: var(--transition);">
-                <i class="fa-solid fa-gamepad"></i> เล่นเกมเลย!
-            </a>
-        </div>
-    </section>
 
     <footer class="main-footer">
         <p>&copy; 2024 Animex. Created for Education.</p>
