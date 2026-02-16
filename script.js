@@ -480,12 +480,14 @@ function setupEventListeners() {
     if (closeModal) {
         closeModal.addEventListener('click', () => {
             modal.classList.remove('show');
+            document.body.style.overflow = ''; // Unlock scroll
         });
     }
 
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.remove('show');
+            document.body.style.overflow = ''; // Unlock scroll
         }
     });
 }
@@ -550,6 +552,7 @@ function openModal(animal) {
     `;
 
     modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Lock scroll
 }
 
 // Comparison Logic
