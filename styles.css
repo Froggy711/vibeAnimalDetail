@@ -609,16 +609,57 @@ body {
         font-size: 2.5rem;
     }
 
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .animals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
     .modal-body {
         flex-direction: column;
     }
 
     .modal-img {
-        height: 250px;
+        max-width: 100%;
     }
 
-    .modal-details {
-        padding: 30px;
+    .compare-container {
+        flex-direction: column;
+    }
+
+    .compare-item {
+        width: 100%;
+    }
+
+    /* Leaderboard responsive */
+    .leaderboard-section {
+        padding: 0 15px !important;
+        margin: 40px auto !important;
+    }
+
+    #homeLeaderboard>div {
+        padding: 15px !important;
+    }
+
+    #homeLeaderboard>div>div:first-child {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    #homeLeaderboard span[style*="font-size: 1.5rem"] {
+        font-size: 1.2rem !important;
     }
 }
 
