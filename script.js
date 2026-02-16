@@ -511,6 +511,9 @@ function openModal(animal) {
     if (!modal || !modalBody) return;
 
     const typeInfo = getTypeInfo(animal.type);
+    const isFav = isFavorite(animal.name);
+
+    const modalFavBtn = document.getElementById('modalFavBtn');
 
     modalBody.innerHTML = `
         <img src="${animal.image}" alt="${animal.name}" class="modal-img">
@@ -552,6 +555,33 @@ function openModal(animal) {
             </div>
         </div>
     `;
+
+    // Handle Modal Favorite Button
+    if (modalFavBtn) {
+        modalFavBtn.classList.toggle('active', isFav);
+
+        // Remove old listeners to avoid multiple fires
+        const newFavBtn = modalFavBtn.cloneNode(true);
+        modalFavBtn.parentNode.replaceChild(newFavBtn, modalFavBtn);
+
+        newFavBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const active = toggleFavorite(animal.name);
+            newFavBtn.classList.toggle('active', active);
+
+            // Sync with any visible cards
+            document.querySelectorAll(`.animal-card`).forEach(card => {
+                if (card.querySelector('h3').textContent === animal.name) {
+                    const cardFavBtn = card.querySelector('.favorite-btn');
+                    if (cardFavBtn) cardFavBtn.classList.toggle('active', active);
+                }
+            });
+
+            // Small animation
+            newFavBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => newFavBtn.style.transform = 'scale(1)', 200);
+        });
+    }
 
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; // Lock scroll

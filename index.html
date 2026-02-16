@@ -61,7 +61,7 @@
 
     <main id="explore" class="container">
         <section class="recommended-section">
-            <h2 class="section-title"><i class="fa-solid fa-star"></i> แนะนำสัตว์น่าสนใจ (Recommended)</h2>
+            <h2 class="section-title"><i class="fa-solid fa-star"></i> สัตว์ที่แนะนำ (Recommended)</h2>
             <div class="animals-grid" id="recommendedGrid">
                 <!-- Recommended animals injected here by JS -->
             </div>
@@ -70,9 +70,9 @@
         <!-- Leaderboard Section -->
         <section class="leaderboard-section" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
             <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px;">
+                <h2 class="section-title">
                     <i class="fa-solid fa-trophy" style="color: var(--accent);"></i>
-                    <span class="gradient-text"> ตารางคะแนนสูงสุด (Leaderboard)</span>
+                    <span class="gradient-text"> อันดับสูงสุด (Leaderboard)</span>
                 </h2>
                 <p style="color: var(--text-muted); font-size: 1rem;">ท้าทายความรู้ของคุณและขึ้นเป็นที่หนึ่ง!</p>
             </div>
@@ -137,6 +137,9 @@
     <div id="animalModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
+            <button id="modalFavBtn" class="modal-fav-btn" style="z-index: 1100;">
+                <i class="fa-solid fa-heart"></i>
+            </button>
             <div class="modal-body" id="modalBody">
                 <!-- Modal content injected by JS -->
             </div>

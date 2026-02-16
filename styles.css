@@ -579,11 +579,48 @@ body {
 .modal-details h2 {
     font-family: var(--font-heading);
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    /* Increased for breathing room */
     background: var(--gradient-title);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.modal-fav-btn {
+    position: absolute;
+    top: 20px;
+    right: 75px;
+    /* 20px (close right) + 40px (close width) + 15px (gap) */
+    background: rgba(0, 0, 0, 0.6);
+    /* Slightly darker background for contrast */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Brighter border */
+    color: white;
+    /* Brighter icon color */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.2rem;
+    z-index: 1500 !important;
+    /* Extremely high to ensure visibility */
+}
+
+.modal-fav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    transform: scale(1.1);
+}
+
+.modal-fav-btn.active {
+    color: #ff0055;
+    background: rgba(255, 0, 85, 0.1);
+    border-color: rgba(255, 0, 85, 0.2);
 }
 
 .detail-row {
@@ -641,132 +678,215 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        padding: 10px 10px;
-        /* Reduced to save horizontal space */
+        padding: 20px 15px;
+        /* Balanced padding */
     }
 
     .main-header {
-        padding: 5px 5px;
-        /* Minimal padding */
+        padding: 5px 10px;
     }
 
     .navbar {
-        padding: 5px 0;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        /* Reduced margin */
+        gap: 8px;
+        /* Tighter gap */
     }
 
     .logo {
-        font-size: 1.2rem;
-        margin-bottom: 2px;
+        font-size: 1.1rem;
+        /* Smaller logo */
+        margin-bottom: 3px;
     }
 
     .nav-links a,
     .nav-btn {
-        padding: 4px 8px !important;
+        padding: 5px 10px !important;
         font-size: 0.75rem !important;
-        border-radius: 8px !important;
+        /* Smaller nav text */
+        border-radius: 10px !important;
     }
 
     .hero h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        /* Down from 1.8rem */
         margin-bottom: 10px;
     }
 
     .hero p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+        /* Down from 0.95rem */
         margin-bottom: 15px;
-        display: none;
-        /* Hide hero text on very small screens to save space */
+        display: block !important;
+        padding: 0 5px;
+        line-height: 1.4;
     }
 
     .btn-primary {
         padding: 8px 18px;
         font-size: 0.8rem;
+        /* Scaled down */
     }
 
     .animals-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-        /* ULTRA-COMPACT 4 columns */
-        gap: 3px !important;
-        padding: 0 !important;
-        width: 100% !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        /* Tighter grid */
+        padding: 4px !important;
     }
 
     .animal-card {
-        border-radius: 6px !important;
-        /* Sharper corners for tiny cards */
+        border-radius: 14px !important;
     }
 
     .animal-card .card-image {
-        height: 65px;
-        /* Shorter image for 4-column layout */
+        height: 110px;
+        /* Shorter image to maintain proportion */
     }
 
     .card-actions {
-        top: 3px !important;
-        right: 3px !important;
-        gap: 3px !important;
+        top: 6px !important;
+        right: 6px !important;
+        gap: 6px !important;
     }
 
     .action-btn {
-        width: 18px !important;
-        height: 18px !important;
-        font-size: 0.55rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.75rem !important;
     }
 
     .animal-card h3 {
-        font-size: 0.65rem !important;
-        margin: 0 !important;
-        text-align: center;
+        font-size: 0.9rem !important;
+        /* Smaller card titles */
+        margin-bottom: 2px !important;
+    }
+
+    .card-info {
+        padding: 10px !important;
     }
 
     .animal-card p {
         display: none !important;
-        /* Hide descriptions on grid items to keep them tiny */
     }
 
-    .card-info {
-        padding: 4px !important;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    /* Filters & Search */
+    .search-wrap {
+        gap: 8px !important;
+        margin-bottom: 15px !important;
     }
 
-    .card-badge {
-        display: none !important;
-        /* Hide badge on 4-column grid to save space */
+    .search-box,
+    .filter-select {
+        padding: 4px 12px !important;
+        font-size: 0.8rem !important;
     }
 
-    /* Modal Fixes */
+    .filter-btn {
+        padding: 5px 12px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .section-title {
+        font-size: 1.0rem !important;
+        /* Scaled down header */
+        margin-bottom: 15px !important;
+    }
+
+    /* Modal Adjustments */
     .modal-content {
-        width: 92%;
-        max-height: 80vh !important;
-        /* Even more compact */
-        display: flex;
-        flex-direction: column;
-        border-radius: 15px;
-        overflow: hidden;
-    }
-
-    .modal-body {
-        overflow-y: auto;
-        /* Enable scrolling within modal */
-        flex: 1;
+        width: 95%;
+        max-height: 85vh !important;
     }
 
     .modal-img {
-        height: 150px;
-        width: 100%;
-        object-fit: cover;
+        height: 140px;
     }
 
     .modal-details {
-        padding: 15px;
+        padding: 12px;
     }
 
     .modal-details h2 {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
+        font-size: 1.25rem;
+        /* Smaller modal header */
+        margin-bottom: 20px;
+    }
+
+    .modal-fav-btn {
+        top: 10px !important;
+        right: 50px !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
+        z-index: 1501 !important;
+    }
+
+    .leaderboard-item {
+        padding: 12px 10px !important;
+        gap: 10px !important;
+    }
+
+    .rank-num {
+        font-size: 1.1rem !important;
+        min-width: 40px !important;
+    }
+
+    .player-name {
+        font-size: 0.9rem !important;
+    }
+
+    .final-score-display {
+        font-size: 1.1rem !important;
+    }
+
+    #homeLeaderboard {
+        padding: 15px !important;
+    }
+
+    .fun-fact-card {
+        padding: 10px 15px !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 20px !important;
+        max-width: 100% !important;
+    }
+
+    .fun-fact-card::before {
+        font-size: 1.2rem !important;
+    }
+
+    .about-section {
+        padding: 30px 15px !important;
+        margin-top: 40px !important;
+    }
+
+    .about-content h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    .highlight-text {
+        font-size: 1.0rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    .about-content p {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .compare-dock {
+        padding: 10px 15px !important;
+        gap: 15px !important;
+        border-radius: 20px 20px 0 0 !important;
+    }
+
+    .compare-info {
+        font-size: 0.85rem !important;
+    }
+
+    #compareSlots {
+        gap: 10px !important;
     }
 
     .close-modal {
