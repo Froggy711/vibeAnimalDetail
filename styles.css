@@ -352,6 +352,13 @@ body {
 }
 
 .animal-card {
+    background: var(--bg-card);
+    border: var(--glass-border);
+    border-radius: var(--radius);
+    position: relative;
+    /* CRITICAL for absolute children */
+    overflow: hidden;
+    /* Added globally for safety */
     box-shadow: var(--shadow);
     opacity: 0;
     transform: translateY(30px);
@@ -368,7 +375,7 @@ body {
 
 .animal-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 242, 255, 0.4);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -633,8 +640,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 10px 10px;
+        /* Reduced to save horizontal space */
+    }
+
     .main-header {
-        padding: 5px 10px;
+        padding: 5px 5px;
+        /* Minimal padding */
     }
 
     .navbar {
@@ -672,22 +685,39 @@ body {
     }
 
     .animals-grid {
-        grid-template-columns: repeat(3, 1fr);
-        /* 3 columns for gallery look */
-        gap: 8px;
-        padding: 0 5px;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        /* ULTRA-COMPACT 4 columns */
+        gap: 3px !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    .animal-card {
+        border-radius: 6px !important;
+        /* Sharper corners for tiny cards */
     }
 
     .animal-card .card-image {
-        height: 90px;
-        /* Very compact images */
+        height: 65px;
+        /* Shorter image for 4-column layout */
+    }
+
+    .card-actions {
+        top: 3px !important;
+        right: 3px !important;
+        gap: 3px !important;
+    }
+
+    .action-btn {
+        width: 18px !important;
+        height: 18px !important;
+        font-size: 0.55rem !important;
     }
 
     .animal-card h3 {
-        font-size: 0.85rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 0.65rem !important;
+        margin: 0 !important;
+        text-align: center;
     }
 
     .animal-card p {
@@ -696,20 +726,22 @@ body {
     }
 
     .card-info {
-        padding: 8px !important;
+        padding: 4px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .card-badge {
-        padding: 1px 5px;
-        font-size: 0.6rem;
-        margin-bottom: 3px;
+        display: none !important;
+        /* Hide badge on 4-column grid to save space */
     }
 
     /* Modal Fixes */
     .modal-content {
-        width: 90%;
-        max-height: 85vh;
-        /* Don't cover whole screen */
+        width: 92%;
+        max-height: 80vh !important;
+        /* Even more compact */
         display: flex;
         flex-direction: column;
         border-radius: 15px;

@@ -358,9 +358,11 @@ function getDietSlug(dietStr) {
 function renderRecommended() {
     if (!recommendedGrid) return;
 
-    // Pick 6 random unique animals
+    // Pick random unique animals (6 on desktop, 4 on mobile)
+    const isMobile = window.innerWidth < 768;
+    const limit = isMobile ? 4 : 6;
     const shuffled = [...animals].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 6);
+    const selected = shuffled.slice(0, limit);
 
     recommendedGrid.innerHTML = '';
 
