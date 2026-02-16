@@ -11,7 +11,8 @@ const gameState = {
     questions: [],
     timeLeft: 30,
     timerInterval: null,
-    gameStarted: false
+    gameStarted: false,
+    correctAnswersCount: 0
 };
 
 // Game Modes
@@ -29,6 +30,7 @@ function initGame(mode) {
     gameState.score = 0;
     gameState.streak = 0;
     gameState.lives = 3;
+    gameState.correctAnswersCount = 0;
     gameState.gameStarted = true;
 
     // Generate questions based on mode
@@ -264,6 +266,7 @@ function checkAnswer(selectedAnswer, correctAnswer, points) {
 
         gameState.score += totalPoints;
         gameState.streak++;
+        gameState.correctAnswersCount++;
 
         showFeedback('correct', `+${totalPoints} คะแนน!`);
     } else {
@@ -310,7 +313,7 @@ function endGame() {
     document.getElementById('resultsScreen').style.display = 'block';
 
     document.getElementById('finalScore').textContent = gameState.score;
-    document.getElementById('correctAnswers').textContent = gameState.currentQuestion;
+    document.getElementById('correctAnswers').textContent = gameState.correctAnswersCount;
     document.getElementById('totalQuestions').textContent = gameState.questions.length;
 
     // Show leaderboard
@@ -342,6 +345,7 @@ function saveHighScore(score, mode) {
     scores[userEmail] = scores[userEmail].slice(0, 20);
 
     localStorage.setItem('gameScores', JSON.stringify(scores));
+    console.log(`[Game] Saved score ${score} for ${userEmail} in mode ${mode || gameState.currentMode}`);
 }
 
 // Check if high score for a specific mode
@@ -369,19 +373,26 @@ function displayLeaderboard(filterMode = 'all') {
 
     // Group scores by user and find the highest score per user
     const bestScoresByUser = {};
-    Object.keys(allScores).forEach(email => {
-        allScores[email].forEach(scoreData => {
-            // Apply mode filter first
-            if (filterMode !== 'all' && scoreData.mode !== filterMode) return;
+    try {
+        Object.keys(allScores).forEach(email => {
+            if (!Array.isArray(allScores[email])) return;
 
-            if (!bestScoresByUser[email] || scoreData.score > bestScoresByUser[email].score) {
-                bestScoresByUser[email] = {
-                    email: email,
-                    ...scoreData
-                };
-            }
+            allScores[email].forEach(scoreData => {
+                // Apply mode filter first
+                if (filterMode !== 'all' && scoreData.mode !== filterMode) return;
+
+                // Use >= to keep the MOST RECENT if scores are tied
+                if (!bestScoresByUser[email] || scoreData.score >= bestScoresByUser[email].score) {
+                    bestScoresByUser[email] = {
+                        email: email,
+                        ...scoreData
+                    };
+                }
+            });
         });
-    });
+    } catch (e) {
+        console.error('[Game] Error calculating leaderboard:', e);
+    }
 
     // Convert to array and sort
     let flatScores = Object.values(bestScoresByUser);

@@ -197,20 +197,27 @@
 
             // Group scores by user and find the highest score per user
             const bestScoresByUser = {};
-            Object.keys(allScores).forEach(email => {
-                allScores[email].forEach(scoreData => {
-                    // Apply mode filter
-                    if (filterMode !== 'all' && scoreData.mode !== filterMode) return;
+            try {
+                Object.keys(allScores).forEach(email => {
+                    if (!Array.isArray(allScores[email])) return;
 
-                    if (!bestScoresByUser[email] || scoreData.score > bestScoresByUser[email].score) {
-                        bestScoresByUser[email] = {
-                            email: email,
-                            name: email.split('@')[0],
-                            ...scoreData
-                        };
-                    }
+                    allScores[email].forEach(scoreData => {
+                        // Apply mode filter
+                        if (filterMode !== 'all' && scoreData.mode !== filterMode) return;
+
+                        // Use >= to keep the MOST RECENT if scores are tied
+                        if (!bestScoresByUser[email] || scoreData.score >= bestScoresByUser[email].score) {
+                            bestScoresByUser[email] = {
+                                email: email,
+                                name: email.split('@')[0],
+                                ...scoreData
+                            };
+                        }
+                    });
                 });
-            });
+            } catch (e) {
+                console.error('[Home] Error calculating leaderboard:', e);
+            }
 
             // Convert back to array and sort
             let flatScores = Object.values(bestScoresByUser);
