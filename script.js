@@ -357,7 +357,7 @@ function renderRecommended() {
 }
 
 // Helper to create card element
-function createAnimalCard(animal, delay) {
+function createAnimalCard(animal, delay, showCompare = true) {
     const card = document.createElement('article');
     card.className = 'animal-card';
 
@@ -373,7 +373,7 @@ function createAnimalCard(animal, delay) {
         </div>
         <div class="card-actions">
             <button class="action-btn favorite-btn ${isFavorite(animal.name) ? 'active' : ''}" title="เพิ่มในรายการโปรด"><i class="fa-solid fa-heart"></i></button>
-            <button class="action-btn compare-btn ${state.compareList.some(a => a.id === animal.id) ? 'active' : ''}" title="เปรียบเทียบ"><i class="fa-solid fa-right-left"></i></button>
+            ${showCompare ? `<button class="action-btn compare-btn ${state.compareList.some(a => a.id === animal.id) ? 'active' : ''}" title="เปรียบเทียบ"><i class="fa-solid fa-right-left"></i></button>` : ''}
         </div>
         <div class="card-info">
             <span class="card-badge ${typeInfo.className}">${typeInfo.label}</span>
@@ -398,10 +398,12 @@ function createAnimalCard(animal, delay) {
         }, 200);
     });
 
-    compareBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleCompare(animal);
-    });
+    if (compareBtn) {
+        compareBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCompare(animal);
+        });
+    }
 
     card.addEventListener('click', () => openModal(animal));
 

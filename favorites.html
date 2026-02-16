@@ -179,7 +179,8 @@
 
                 favoritesGrid.innerHTML = '';
                 favoriteAnimals.forEach((animal, index) => {
-                    const card = createAnimalCard(animal, index * 0.05);
+                    // Pass false as the third parameter to hide the compare button 
+                    const card = createAnimalCard(animal, index * 0.05, false);
                     favoritesGrid.appendChild(card);
                 });
             }
