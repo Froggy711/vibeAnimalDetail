@@ -421,11 +421,11 @@ function displayLeaderboard(filterMode = 'all') {
 
         row.innerHTML = `
             <div style="display: flex; align-items: center; gap: 10px;">
-                <span class="rank">#${index + 1}</span>
+                <span class="rank rank-num">#${index + 1}</span>
                 ${filterMode === 'all' ? `<i class="fa-solid ${modeIcon}" style="font-size: 0.8rem; opacity: 0.6;" title="${entry.mode}"></i>` : ''}
             </div>
-            <span class="player">${entry.email.split('@')[0]}</span>
-            <span class="score">${entry.score.toLocaleString()}</span>
+            <span class="player player-name">${entry.email.split('@')[0]}</span>
+            <span class="score final-score-display">${entry.score.toLocaleString()}</span>
         `;
         leaderboard.appendChild(row);
     });

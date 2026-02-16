@@ -232,20 +232,20 @@
                     </div>
                 `;
             } else {
-                leaderboard.innerHTML = flatScores.slice(0, 5).map((entry, index) => {
+                boardData = flatScores.slice(0, 5).map((entry, index) => {
                     const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
                     const rankColor = index === 0 ? 'var(--accent)' : index === 1 ? 'var(--primary)' : index === 2 ? 'var(--secondary)' : 'var(--text-muted)';
 
                     return `
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: var(--transition);" 
+                        <div class="leaderboard-item" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: var(--transition);" 
                              onmouseover="this.style.background='rgba(255,255,255,0.05)'" 
                              onmouseout="this.style.background='transparent'">
                             <div style="display: flex; align-items: center; gap: 20px; flex: 1;">
-                                <span style="font-size: 1.5rem; font-weight: 700; color: ${rankColor}; min-width: 50px; font-family: var(--font-heading);">
+                                <span class="rank-num" style="font-size: 1.5rem; font-weight: 700; color: ${rankColor}; min-width: 50px; font-family: var(--font-heading);">
                                     ${medal} #${index + 1}
                                 </span>
                                 <div style="flex: 1;">
-                                    <div style="font-size: 1.1rem; font-weight: 600; color: var(--text-main);">
+                                    <div class="player-name" style="font-size: 1.1rem; font-weight: 600; color: var(--text-main);">
                                         ${entry.name}
                                     </div>
                                     <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 3px;">
@@ -253,12 +253,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: var(--font-heading);">
+                            <div class="final-score-display" style="font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: var(--font-heading);">
                                 ${entry.score.toLocaleString()}
                             </div>
                         </div>
                     `;
                 }).join('');
+                leaderboard.innerHTML = boardData;
             }
         }
 
