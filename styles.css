@@ -634,157 +634,175 @@ body {
 
 @media (max-width: 768px) {
     .main-header {
-        padding: 15px 20px;
+        padding: 10px 15px;
     }
 
     .navbar {
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 40px;
+        flex-direction: row;
+        /* Keep it horizontal */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 25px;
+        padding: 10px 0;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
     }
 
     .nav-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 5px;
+        width: 100%;
     }
 
-    .nav-links a {
-        margin-left: 0;
-        font-size: 0.9rem;
+    .nav-links a,
+    .nav-btn {
+        margin: 0 !important;
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+        border-radius: 12px !important;
+        height: auto !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Make standard links look more compact and button-like on mobile */
+    .nav-links a:not(.nav-btn) {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
     }
 
     .hero p {
-        font-size: 1rem;
-        padding: 0 10px;
-        margin-bottom: 30px;
+        font-size: 0.9rem;
+        padding: 0 5px;
+        margin-bottom: 20px;
+        max-width: 90%;
     }
 
-    .btn-nav-auth {
-        margin-left: 0;
-    }
-
-    .nav-btn {
-        padding: 8px 15px !important;
-        font-size: 0.85rem !important;
-        width: auto;
+    .btn-primary {
+        padding: 10px 24px;
+        font-size: 0.9rem;
     }
 
     .search-wrap {
-        flex-direction: column;
-        gap: 15px;
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
     .search-box,
     .filter-select {
-        min-width: 100%;
+        min-width: 0;
+        flex: 1;
+        padding: 0 15px;
+    }
+
+    .search-box input,
+    .filter-select select {
+        font-size: 0.9rem;
     }
 
     .filter-buttons {
-        gap: 8px;
+        gap: 5px;
     }
 
     .filter-btn {
-        padding: 8px 12px;
-        font-size: 0.85rem;
+        padding: 6px 10px;
+        font-size: 0.8rem;
     }
 
     .recommended-section {
         padding: 15px;
         margin-bottom: 30px;
+        border-radius: 15px;
     }
 
     .section-title {
-        font-size: 1.3rem;
-        margin-bottom: 20px;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
     }
 
     .animals-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        /* Force 2 columns */
+        gap: 12px;
     }
 
     .animal-card .card-image {
-        height: 140px;
+        height: 120px;
+        /* Even smaller images */
     }
 
     .animal-card .card-info {
-        padding: 15px;
+        padding: 12px;
     }
 
     .animal-card h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 3px;
+    }
+
+    .card-badge {
+        padding: 2px 8px;
+        font-size: 0.7rem;
         margin-bottom: 5px;
     }
 
     .animal-card p {
-        font-size: 0.8rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        font-size: 0.75rem;
+        line-height: 1.3;
     }
 
     .modal-content {
         width: 95%;
-        border-radius: 20px;
-    }
-
-    .modal-body {
-        flex-direction: column;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
     .modal-img {
-        height: 250px;
-        min-width: 100%;
+        height: 180px;
     }
 
     .modal-details {
-        padding: 25px;
-        min-width: 100%;
+        padding: 20px;
     }
 
     .modal-details h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     /* Leaderboard responsive */
     .leaderboard-section {
-        padding: 0 10px !important;
-        margin: 30px auto !important;
+        margin: 20px auto !important;
     }
 
     #homeLeaderboard {
-        padding: 15px !important;
+        padding: 10px !important;
     }
 
     #homeLeaderboard>div {
-        padding: 12px 10px !important;
-    }
-
-    #homeLeaderboard>div>div:first-child {
-        flex-direction: row !important;
-        /* Keep rank and name on same line if possible */
-        gap: 15px !important;
+        padding: 10px 8px !important;
     }
 
     .rank-num {
-        font-size: 1.1rem !important;
-        min-width: 40px !important;
-    }
-
-    .player-name {
         font-size: 1rem !important;
+        min-width: 35px !important;
     }
 
     .final-score-display {
-        font-size: 1.2rem !important;
+        font-size: 1.1rem !important;
     }
 }
 
