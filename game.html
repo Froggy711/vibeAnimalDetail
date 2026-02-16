@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมทายสัตว์ | Animex</title>
+    <meta name="description" content="เกมทายสัตว์สนุกๆ ทดสอบความรู้เกี่ยวกับสัตว์">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Game-specific styles */
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .mode-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+        }
+
+        .mode-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .mode-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .mode-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .game-screen {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            border-radius: var(--radius);
+            padding: 40px;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .game-stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .game-stat i {
+            color: var(--primary);
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: var(--font-heading);
+        }
+
+        .lives-display {
+            display: flex;
+            gap: 5px;
+            font-size: 1.5rem;
+        }
+
+        .question-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .question-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+        }
+
+        .question-number {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            background: var(--bg-modal);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            border-color: #00ff88;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option-btn.wrong {
+            background: linear-gradient(135deg, #ff0055, #cc0044);
+            border-color: #ff0055;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-modal);
+            padding: 30px 50px;
+            border-radius: var(--radius);
+            font-size: 1.5rem;
+            font-weight: 700;
+            z-index: 1000;
+            display: none;
+            animation: fadeInOut 2s ease;
+        }
+
+        .feedback.correct {
+            color: #00ff88;
+            border: 2px solid #00ff88;
+        }
+
+        .feedback.wrong {
+            color: #ff0055;
+            border: 2px solid #ff0055;
+        }
+
+        @keyframes fadeInOut {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+
+            10%,
+            90% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .results-screen {
+            text-align: center;
+        }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            font-family: var(--font-heading);
+        }
+
+        .leaderboard {
+            background: var(--bg-modal);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .leaderboard-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .leaderboard-row:last-child {
+            border-bottom: none;
+        }
+
+        .rank {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 40px;
+        }
+
+        .player {
+            flex: 1;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .score {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .btn-game {
+            padding: 15px 40px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 10px;
+            font-family: var(--font-body);
+        }
+
+        .btn-game:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.4);
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .game-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-score {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-glob"></div>
+    <div class="background-glob-2"></div>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-gamepad"></i> Animex Game
+            </div>
+            <div class="nav-links">
+                <a href="index.html">หน้าหลัก</a>
+                <a href="favorites.html">
+                    <i class="fa-solid fa-heart"></i> โปรด
+                </a>
+                <a href="game.html" class="active">
+                    <i class="fa-solid fa-gamepad"></i> เกม
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="game-container">
+        <!-- Mode Selection Screen -->
+        <div id="modeSelection">
+            <h1 style="text-align: center; font-family: var(--font-heading); font-size: 3rem; margin-bottom: 40px;">
+                <span class="gradient-text">เลือกโหมดเกม</span>
+            </h1>
+
+            <div class="mode-card" onclick="initGame('guess-animal')">
+                <i class="fa-solid fa-image"></i>
+                <h3>ทายชื่อสัตว์</h3>
+                <p>ดูรูปภาพและทายว่าสัตว์ตัวนี้คืออะไร</p>
+            </div>
+
+            <div class="mode-card" onclick="initGame('habitat-match')">
+                <i class="fa-solid fa-tree"></i>
+                <h3>จับคู่ถิ่นที่อยู่</h3>
+                <p>ทายว่าสัตว์แต่ละชนิดอาศัยอยู่ที่ไหน</p>
+            </div>
+
+            <div class="mode-card" onclick="initGame('diet-quiz')">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>ทายอาหาร</h3>
+                <p>ทายว่าสัตว์แต่ละชนิดกินอะไร</p>
+            </div>
+
+            <div class="mode-card" onclick="initGame('true-false')">
+                <i class="fa-solid fa-question"></i>
+                <h3>จริงหรือเท็จ</h3>
+                <p>ตอบว่าข้อความเกี่ยวกับสัตว์จริงหรือเท็จ</p>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" style="display: none;">
+            <div class="game-screen">
+                <div class="game-header">
+                    <div class="game-stat">
+                        <i class="fa-solid fa-trophy"></i>
+                        <span id="scoreDisplay">0</span>
+                    </div>
+                    <div class="game-stat">
+                        <i class="fa-solid fa-fire"></i>
+                        <span id="streakDisplay">0</span>
+                    </div>
+                    <div class="timer" id="timer">30</div>
+                    <div class="lives-display" id="livesDisplay"></div>
+                </div>
+
+                <div class="question-container">
+                    <p class="question-number" id="questionNumber">1/10</p>
+                    <img src="" alt="Animal" class="question-image" id="questionImage">
+                    <h2 class="question-text" id="questionText">คำถาม</h2>
+                </div>
+
+                <div class="options-container" id="optionsContainer">
+                    <!-- Options will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" style="display: none;">
+            <div class="results-screen">
+                <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 20px;">
+                    🎉 เกมจบแล้ว!
+                </h1>
+                <div class="final-score" id="finalScore">0</div>
+                <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;">
+                    ตอบถูก <span id="correctAnswers">0</span>/<span id="totalQuestions">10</span> ข้อ
+                </p>
+
+                <div class="leaderboard">
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 20px;">
+                        <i class="fa-solid fa-ranking-star"></i> ตารางคะแนนสูงสุด
+                    </h3>
+                    <div id="leaderboard">
+                        <!-- Leaderboard will be injected here -->
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn-game" onclick="restartGame()">
+                        <i class="fa-solid fa-rotate-right"></i> เล่นอีกครั้ง
+                    </button>
+                    <button class="btn-game" onclick="window.location.href='index.html'">
+                        <i class="fa-solid fa-home"></i> กลับหน้าหลัก
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Overlay -->
+        <div id="feedback" class="feedback"></div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Animex. Created for Education.</p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="favorites.js"></script>
+    <script src="script.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>

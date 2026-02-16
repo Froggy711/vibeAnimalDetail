@@ -324,6 +324,7 @@ function createAnimalCard(animal, delay) {
             <img src="${animal.image}" alt="${animal.name}" class="card-image">
         </div>
         <div class="card-actions">
+            <button class="action-btn favorite-btn ${isFavorite(animal.name) ? 'active' : ''}" title="เพิ่มในรายการโปรด"><i class="fa-solid fa-heart"></i></button>
             <button class="action-btn compare-btn ${state.compareList.some(a => a.id === animal.id) ? 'active' : ''}" title="เปรียบเทียบ"><i class="fa-solid fa-right-left"></i></button>
         </div>
         <div class="card-info">
@@ -334,7 +335,20 @@ function createAnimalCard(animal, delay) {
     `;
 
     // Internal actions
+    const favoriteBtn = card.querySelector('.favorite-btn');
     const compareBtn = card.querySelector('.compare-btn');
+
+    favoriteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isFav = toggleFavorite(animal.name);
+        favoriteBtn.classList.toggle('active', isFav);
+
+        // Add animation
+        favoriteBtn.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+            favoriteBtn.style.transform = 'scale(1)';
+        }, 200);
+    });
 
     compareBtn.addEventListener('click', (e) => {
         e.stopPropagation();

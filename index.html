@@ -33,6 +33,17 @@
                 <a href="#" class="active">หน้าหลัก</a>
                 <a href="#explore">สำรวจ</a>
                 <a href="about.html">เกี่ยวกับ</a>
+                <a href="favorites.html" style="position: relative;">
+                    <i class="fa-solid fa-heart"></i> โปรด
+                    <span id="favoritesCount" class="favorites-badge" style="display: none;">0</span>
+                </a>
+                <a href="game.html"
+                    style="padding: 8px 16px; background: linear-gradient(90deg, #ff6b00, #ff0055); border-radius: 20px; color: white; font-weight: 600;">
+                    <i class="fa-solid fa-gamepad"></i> เกม
+                </a>
+                <span id="userGreeting" style="color: var(--primary); margin-left: 20px; display: none;"></span>
+                <a href="login.html" id="authButton"
+                    style="margin-left: 20px; padding: 8px 20px; background: linear-gradient(90deg, var(--secondary), var(--accent)); border-radius: 20px; color: white; font-weight: 600;">เข้าสู่ระบบ</a>
                 <button id="themeToggle" class="theme-toggle">
                     <i class="fa-solid fa-moon"></i>
                 </button>
@@ -121,7 +132,29 @@
         <p>&copy; 2024 Animex. Created for Education.</p>
     </footer>
 
+    <script src="auth.js"></script>
+    <script src="favorites.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Check authentication status and update UI
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('currentUser');
+            const userGreeting = document.getElementById('userGreeting');
+            const authButton = document.getElementById('authButton');
+
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                userGreeting.textContent = `สวัสดี, ${user.name}`;
+                userGreeting.style.display = 'inline';
+                authButton.textContent = 'ออกจากระบบ';
+                authButton.href = '#';
+                authButton.onclick = (e) => {
+                    e.preventDefault();
+                    logout();
+                };
+            }
+        });
+    </script>
 </body>
 
 </html>

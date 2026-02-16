@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Animex</title>
+    <meta name="description" content="Login to access Animex animal encyclopedia">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00f2ff',
+                        secondary: '#7000ff',
+                        accent: '#ff0055',
+                        dark: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['Kanit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00f2ff, #7000ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-button {
+            background: linear-gradient(90deg, #7000ff, #ff0055);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(112, 0, 255, 0.5);
+        }
+
+        .background-blob {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: drift 20s infinite alternate;
+        }
+
+        .blob-1 {
+            background: radial-gradient(circle, #7000ff 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            background: radial-gradient(circle, #00f2ff 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #00f2ff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            outline: none;
+        }
+
+        .error-message {
+            font-size: 0.875rem;
+            color: #ff0055;
+            margin-top: 0.5rem;
+        }
+
+        .success-message {
+            font-size: 0.875rem;
+            color: #00f2ff;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen flex items-center justify-center px-4">
+    <!-- Background Blobs -->
+    <div class="background-blob blob-1"></div>
+    <div class="background-blob blob-2"></div>
+
+    <!-- Login Card -->
+    <div class="glass-card rounded-3xl p-8 md:p-12 w-full max-w-md shadow-2xl">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-heading font-bold gradient-text mb-2">
+                <i class="fa-solid fa-paw"></i> Animex
+            </h1>
+            <p class="text-gray-400 text-sm">ยินดีต้อนรับสู่โลกแห่งสัตว์มหัศจรรย์</p>
+        </div>
+
+        <!-- Toggle Buttons -->
+        <div class="flex gap-2 mb-8 glass-card rounded-full p-1">
+            <button id="loginTabBtn"
+                class="flex-1 py-2 px-4 rounded-full font-semibold transition-all duration-300 text-white bg-gradient-to-r from-secondary to-accent">
+                เข้าสู่ระบบ
+            </button>
+            <button id="registerTabBtn"
+                class="flex-1 py-2 px-4 rounded-full font-semibold transition-all duration-300 text-gray-400">
+                สมัครสมาชิก
+            </button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label class="block text-gray-300 mb-2 text-sm font-medium">
+                    <i class="fa-solid fa-envelope text-primary mr-2"></i>อีเมล
+                </label>
+                <input type="email" id="loginEmail" required
+                    class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"
+                    placeholder="your@email.com">
+                <div id="loginEmailError" class="error-message hidden"></div>
+            </div>
+
+            <div>
+                <label class="block text-gray-300 mb-2 text-sm font-medium">
+                    <i class="fa-solid fa-lock text-primary mr-2"></i>รหัสผ่าน
+                </label>
+                <div class="relative">
+                    <input type="password" id="loginPassword" required
+                        class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 pr-12"
+                        placeholder="••••••••">
+                    <button type="button" id="toggleLoginPassword"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div id="loginPasswordError" class="error-message hidden"></div>
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center text-gray-400 cursor-pointer">
+                    <input type="checkbox" id="rememberMe" class="mr-2 accent-primary">
+                    จดจำฉันไว้
+                </label>
+                <a href="#" class="text-primary hover:text-secondary transition-colors">ลืมรหัสผ่าน?</a>
+            </div>
+
+            <div id="loginMessage" class="hidden"></div>
+
+            <button type="submit"
+                class="gradient-button w-full py-3 rounded-xl text-white font-semibold text-lg shadow-lg">
+                เข้าสู่ระบบ <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+        </form>
+
+        <!-- Register Form (Hidden by default) -->
+        <form id="registerForm" class="space-y-6 hidden">
+            <div>
+                <label class="block text-gray-300 mb-2 text-sm font-medium">
+                    <i class="fa-solid fa-user text-primary mr-2"></i>ชื่อผู้ใช้
+                </label>
+                <input type="text" id="registerName" required
+                    class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"
+                    placeholder="ชื่อของคุณ">
+                <div id="registerNameError" class="error-message hidden"></div>
+            </div>
+
+            <div>
+                <label class="block text-gray-300 mb-2 text-sm font-medium">
+                    <i class="fa-solid fa-envelope text-primary mr-2"></i>อีเมล
+                </label>
+                <input type="email" id="registerEmail" required
+                    class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"
+                    placeholder="your@email.com">
+                <div id="registerEmailError" class="error-message hidden"></div>
+            </div>
+
+            <div>
+                <label class="block text-gray-300 mb-2 text-sm font-medium">
+                    <i class="fa-solid fa-lock text-primary mr-2"></i>รหัสผ่าน
+                </label>
+                <div class="relative">
+                    <input type="password" id="registerPassword" required
+                        class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 pr-12"
+                        placeholder="อย่างน้อย 6 ตัวอักษร">
+                    <button type="button" id="toggleRegisterPassword"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div id="registerPasswordError" class="error-message hidden"></div>
+            </div>
+
+            <div>
+                <label class="block text-gray-300 mb-2 text-sm font-medium">
+                    <i class="fa-solid fa-lock text-primary mr-2"></i>ยืนยันรหัสผ่าน
+                </label>
+                <div class="relative">
+                    <input type="password" id="registerConfirmPassword" required
+                        class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 pr-12"
+                        placeholder="ยืนยันรหัสผ่านอีกครั้ง">
+                    <button type="button" id="toggleConfirmPassword"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div id="registerConfirmPasswordError" class="error-message hidden"></div>
+            </div>
+
+            <div id="registerMessage" class="hidden"></div>
+
+            <button type="submit"
+                class="gradient-button w-full py-3 rounded-xl text-white font-semibold text-lg shadow-lg">
+                สมัครสมาชิก <i class="fa-solid fa-user-plus ml-2"></i>
+            </button>
+        </form>
+
+        <!-- Back to Home -->
+        <div class="mt-8 text-center">
+            <a href="index.html" class="text-gray-400 hover:text-primary transition-colors text-sm">
+                <i class="fa-solid fa-arrow-left mr-2"></i>กลับสู่หน้าหลัก
+            </a>
+            <span class="mx-3 text-gray-600">|</span>
+            <a href="favorites.html" class="text-gray-400 hover:text-primary transition-colors text-sm">
+                <i class="fa-solid fa-heart mr-2"></i>สัตว์โปรด
+            </a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

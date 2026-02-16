@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สัตว์โปรด | Animex</title>
+    <meta name="description" content="รายการสัตว์โปรดของคุณ">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-glob"></div>
+    <div class="background-glob-2"></div>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-paw"></i> Animex
+            </div>
+            <div class="nav-links">
+                <a href="index.html">หน้าหลัก</a>
+                <a href="index.html#explore">สำรวจ</a>
+                <a href="about.html">เกี่ยวกับ</a>
+                <a href="favorites.html" class="active" style="position: relative;">
+                    <i class="fa-solid fa-heart"></i> โปรด
+                    <span id="favoritesCount" class="favorites-badge" style="display: none;">0</span>
+                </a>
+                <a href="game.html"
+                    style="padding: 8px 16px; background: linear-gradient(90deg, #ff6b00, #ff0055); border-radius: 20px; color: white; font-weight: 600;">
+                    <i class="fa-solid fa-gamepad"></i> เกม
+                </a>
+                <span id="userGreeting" style="color: var(--primary); margin-left: 20px; display: none;"></span>
+                <a href="login.html" id="authButton"
+                    style="margin-left: 20px; padding: 8px 20px; background: linear-gradient(90deg, var(--secondary), var(--accent)); border-radius: 20px; color: white; font-weight: 600;">เข้าสู่ระบบ</a>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="hero" style="min-height: auto; padding-bottom: 20px;">
+            <h1><i class="fa-solid fa-heart" style="color: var(--accent);"></i><br><span
+                    class="gradient-text">สัตว์โปรด</span></h1>
+            <p id="favoritesSubtitle">รายการสัตว์ที่คุณชื่นชอบ</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fa-solid fa-heart-crack"
+                style="font-size: 5rem; color: var(--text-muted); margin-bottom: 20px;"></i>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 15px;">ยังไม่มีสัตว์โปรด</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">เริ่มต้นเพิ่มสัตว์ที่คุณชื่นชอบจากหน้าหลักกันเถอะ!
+            </p>
+            <a href="index.html" class="btn-primary">
+                <i class="fa-solid fa-magnifying-glass"></i> ค้นหาสัตว์
+            </a>
+        </div>
+
+        <!-- Favorites Grid -->
+        <section class="animals-grid" id="favoritesGrid">
+            <!-- Favorite animals will be injected here -->
+        </section>
+
+        <!-- Clear All Button -->
+        <div id="clearAllContainer" style="text-align: center; margin-top: 40px; display: none;">
+            <button id="clearAllBtn" class="btn-text" style="color: var(--accent); font-size: 1rem;">
+                <i class="fa-solid fa-trash"></i> ลบสัตว์โปรดทั้งหมด
+            </button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Animex. Created for Education.</p>
+    </footer>
+
+    <style>
+        .empty-state {
+            text-align: center;
+            padding: 100px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .favorites-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .animal-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: var(--glass-border);
+            position: relative;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="auth.js"></script>
+    <script src="favorites.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in - redirect to login if not
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('currentUser');
+
+            // Redirect to login if not authenticated
+            if (!currentUser) {
+                alert('กรุณาเข้าสู่ระบบก่อนเพื่อดูสัตว์โปรด');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update auth UI
+            const userGreeting = document.getElementById('userGreeting');
+            const authButton = document.getElementById('authButton');
+
+            const user = JSON.parse(currentUser);
+            userGreeting.textContent = `สวัสดี, ${user.name}`;
+            userGreeting.style.display = 'inline';
+            authButton.textContent = 'ออกจากระบบ';
+            authButton.href = '#';
+            authButton.onclick = (e) => {
+                e.preventDefault();
+                logout();
+            };
+
+            // Render favorites
+            renderFavorites();
+        });
+
+        function renderFavorites() {
+            const favoritesGrid = document.getElementById('favoritesGrid');
+            const emptyState = document.getElementById('emptyState');
+            const clearAllContainer = document.getElementById('clearAllContainer');
+            const subtitle = document.getElementById('favoritesSubtitle');
+
+            const favoriteAnimals = getFavoriteAnimals(animals);
+
+            if (favoriteAnimals.length === 0) {
+                emptyState.style.display = 'block';
+                favoritesGrid.style.display = 'none';
+                clearAllContainer.style.display = 'none';
+                subtitle.textContent = 'ยังไม่มีสัตว์โปรด';
+            } else {
+                emptyState.style.display = 'none';
+                favoritesGrid.style.display = 'grid';
+                clearAllContainer.style.display = 'block';
+                subtitle.textContent = `คุณมีสัตว์โปรด ${favoriteAnimals.length} ชนิด`;
+
+                favoritesGrid.innerHTML = '';
+                favoriteAnimals.forEach((animal, index) => {
+                    const card = createAnimalCard(animal, index * 0.05);
+                    favoritesGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Clear all favorites
+        document.addEventListener('DOMContentLoaded', () => {
+            const clearAllBtn = document.getElementById('clearAllBtn');
+            if (clearAllBtn) {
+                clearAllBtn.addEventListener('click', () => {
+                    if (clearAllFavorites()) {
+                        renderFavorites();
+                    }
+                });
+            }
+        });
+
+        // Listen for favorites updates
+        window.addEventListener('favoritesUpdated', () => {
+            renderFavorites();
+        });
+    </script>
+</body>
+
+</html>

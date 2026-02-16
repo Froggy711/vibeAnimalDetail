@@ -398,6 +398,25 @@ body {
     border-color: var(--accent);
 }
 
+.favorite-btn.active {
+    background: #ff0055;
+    border-color: #ff0055;
+    animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
 .card-info {
     padding: 24px;
 }
@@ -550,6 +569,39 @@ body {
 .detail-row span.value {
     font-size: 1.1rem;
     color: var(--text-main);
+}
+
+.detail-row .stat-box .value {
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+/* Favorites Badge */
+.favorites-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 @media (max-width: 768px) {
