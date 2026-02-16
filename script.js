@@ -227,6 +227,7 @@ const funFacts = [
 ];
 
 // DOM Elements
+const navbar = document.querySelector('.navbar');
 const animalsGrid = document.getElementById('animalsGrid');
 const recommendedGrid = document.getElementById('recommendedGrid');
 const filterBtns = document.querySelectorAll('.filter-btn');
