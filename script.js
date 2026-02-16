@@ -3,7 +3,7 @@ const animals = [
     {
         id: 1,
         name: "สิงโต (Lion)",
-        type: "lและ",
+        type: "land",
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "สิงโตเป็นสัตว์ตระกูลแมวที่มีขนาดใหญ่ที่สุดในแอฟริกา มีฉายาว่า 'เจ้าป่า' ตัวผู้มีแผงคอที่สง่างาม สิงโตมักอยู่รวมกันเป็นฝูง",
@@ -33,7 +33,7 @@ const animals = [
     {
         id: 4,
         name: "ช้างแอฟริกา (African Elephant)",
-        type: "lและ",
+        type: "land",
         habitat: "ป่าและทุ่งหญ้า (Forests & Savannahs)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ช้างแอฟริกาเป็นสัตว์บกที่มีขนาดใหญ่ที่สุดในโลก มีงวงที่ยาวและใบหูขนาดใหญ่เพื่อระบายความร้อน",
@@ -63,7 +63,7 @@ const animals = [
     {
         id: 7,
         name: "ยีราฟ (Giraffe)",
-        type: "lและ",
+        type: "land",
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ยีราฟเป็นสัตว์บกที่สูงที่สุดในโลก มีคอที่ยาวมากเพื่อช่วยในการกินใบไม้จากยอดไม้สูง",
@@ -73,8 +73,8 @@ const animals = [
     {
         id: 8,
         name: "เสือโคร่ง (Tiger)",
-        type: "lและ",
-        habitat: "ป่าทึบและทุ่งหญ้า (Forests & Grasslและs)",
+        type: "land",
+        habitat: "ป่าทึบและทุ่งหญ้า (Forests & Grasslands)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "เสือโคร่งเป็นสัตว์ตระกูลแมวที่มีขนาดใหญ่ที่สุด มีลายพาดกลอนที่เป็นเอกลักษณ์เฉพาะตัวในแต่ละตัว",
         image: "picAnimal/สัตว์บก/เสือโคร่ง (Tiger).jpg",
@@ -83,7 +83,7 @@ const animals = [
     {
         id: 9,
         name: "จิงโจ้ (Kangaroo)",
-        type: "lและ",
+        type: "land",
         habitat: "ทุ่งหญ้าในออสเตรเลีย (Australian Outback)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "จิงโจ้เป็นสัตว์ที่มีกระเป๋าหน้าท้องสำหรับเลี้ยงลูก และใช้การกระโดดเป็นวิธีการเคลื่อนที่หลัก",
@@ -92,18 +92,18 @@ const animals = [
     },
     {
         id: 10,
-        name: "แพนด้าแดง (Red Pและa)",
-        type: "lและ",
+        name: "แพนด้าแดง (Red Panda)",
+        type: "land",
         habitat: "ป่าสนบนภูเขาสูง (High-altitude Forests)",
         diet: "สัตว์กินพืช/ไผ่ (Herbivore/Bamboo)",
         description: "แพนด้าแดงมีขนหนานุ่มสีน้ำตาลแดงและหางเป็นพวง ชอบอาศัยอยู่บนต้นไม้เป็นส่วนใหญ่",
-        image: "picAnimal/สัตว์บก/แพนด้าแดง (Red Pและa).jpg",
+        image: "picAnimal/สัตว์บก/แพนด้าแดง (Red Panda).jpg",
         foodChain: { eats: ["ลูกไผ่", "ผลไม้", "แมลง"], eatenBy: ["เสือดาวหิมะ", "มาร์เทน"] }
     },
     {
         id: 11,
         name: "ม้าลาย (Zebra)",
-        type: "lและ",
+        type: "land",
         habitat: "ทุ่งหญ้าสะวันนา (Savannah)",
         diet: "สัตว์กินพืช (Herbivore)",
         description: "ม้าลายเป็นสัตว์ที่มีลายสีขาวดำพาดขวางทั้งตัว ซึ่งช่วยในการอำพรางตัวจากนักล่า",
@@ -164,7 +164,7 @@ const animals = [
         id: 17,
         name: "นกเค้าแมว (Owl)",
         type: "poultry",
-        habitat: "ป่าไม้และพื้นที่เกษตร (Forests & Farmlและs)",
+        habitat: "ป่าไม้และพื้นที่เกษตร (Forests & Farmlands)",
         diet: "สัตว์กินเนื้อ (Carnivore)",
         description: "นกเค้าแมวเป็นนักล่าในเวลากลางคืนที่มีสายตาดีเยี่ยมและสามารถบินได้เงียบกริบเพื่อไม่ให้เหยื่อรู้ตัว",
         image: "picAnimal/สัตว์ปีก/นกเค้าแมว (Owl).jpg",
